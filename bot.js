@@ -58,7 +58,7 @@ client.on("messageReactionAdd", (reaction, user) => {
 });
 
 client.on("messageReactionRemove", (reaction, user) => {
-    if (user && !user.bot && reaction.message.channel.guild)
+    if (user && !user.bot && reaction.message.channel == channel)
         for (let o in emojiname)
             if (reaction.emoji.name == emojiname[o]) {
                 let i = reaction.message.guild.roles.find(reaction => reaction.name == rolename[o]);
