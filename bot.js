@@ -23,12 +23,12 @@ client.on('message', message => {
 function sendMessage(){
     var guild = client.guilds.get('692591742570201118');
     var channel = guild.channels.get('741678960383099000');
-    channel.send("Hello");
+    channel.send("ready");
     
 }
 
 var emojiname = ["ohiored", "ohiopurple"],
-    rolename = ["new role", ""];
+    rolename = ["Dumbass", "FurFag"];
 
 client.on("message", e => {
     if (e.content.startsWith(prefix + "reaction")) {
