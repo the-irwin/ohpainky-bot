@@ -1,14 +1,16 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
-const guild = client.guilds.get('692591742570201118');
-const channel = guild.channels.get('741678960383099000');
+const guild;
+const channel;
 var timeStamp;
 
 client.on('ready', () => {
     console.log('I am ready!');
      // in leftToEight() milliseconds run this:
         timeStamp = Date.now()/1000;
-        
+    
+    guild = client.guilds.get('692591742570201118');
+    channel = guild.channels.get('741678960383099000');    
     
         //sendMessage(); // send the message once
 });
