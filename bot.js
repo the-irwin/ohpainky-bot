@@ -25,26 +25,6 @@ client.on('message', message => {
 });
 
 function sendMessage(){
-    var request = require("request");
-
-    var options = {
-      method: 'GET',
-      url: 'https://therundown-therundown-v1.p.rapidapi.com/delta',
-      qs: {last_id: timeStamp, include: ['all_periods', 'scores']},
-      headers: {
-        'x-rapidapi-host': 'therundown-therundown-v1.p.rapidapi.com',
-        'x-rapidapi-key': '30616052a7msh590c06b4e88b8f8p1e3cf0jsn2687bddb4085',
-        useQueryString: true
-      }
-    };
-    timeStamp = Date.now()/1000;
-
-    request(options, function (error, response, body) {
-        if (error) throw new Error(error);
-
-        console.log(body);
-    });
-    
     var guild = client.guilds.get('727285430499672115');
     var channel = guild.channels.get('727285430499672119');
     channel.send("Hello");
