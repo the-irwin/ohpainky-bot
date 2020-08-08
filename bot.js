@@ -45,7 +45,7 @@ var emojiname = ["ohiored", "ohiopurple"],
 //    }
 //});
 
-client.on("messageReactionAdd", (reaction, user) => {
+client.on("messageReactionAdd", async (reaction, user) => {
     if (reaction.partial) {
 		// If the message this reaction belongs to was removed the fetching might result in an API error, which we need to handle
 		try {
@@ -66,7 +66,7 @@ client.on("messageReactionAdd", (reaction, user) => {
             }
 });
 
-client.on("messageReactionRemove", (reaction, user) => {
+client.on("messageReactionRemove", async (reaction, user) => {
     if (reaction.partial) {
 		// If the message this reaction belongs to was removed the fetching might result in an API error, which we need to handle
 		try {
