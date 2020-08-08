@@ -46,7 +46,7 @@ var emojiname = ["ohiored", "ohiopurple"],
 //});
 
 client.on("messageReactionAdd", (reaction, user) => {
-    if (user && !user.bot && reaction.message.channel == channel)
+    if (user && !user.bot && reaction.message.channel == channel && reaction.message.channel.guild)
     //if (user && !user.bot && reaction.message.channel.guild)
         console.log(reaction.emoji.name);
         for (let o in emojiname)
