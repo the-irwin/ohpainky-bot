@@ -1,7 +1,7 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
-const guild;
-const channel;
+var guild;
+var channel;
 var timeStamp;
 
 client.on('ready', () => {
