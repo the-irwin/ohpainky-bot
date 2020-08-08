@@ -1,7 +1,8 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
 var guild;
-var channel;
+var botChannel;
+var roleChannel;
 var timeStamp;
 
 client.on('ready', () => {
@@ -10,9 +11,10 @@ client.on('ready', () => {
         timeStamp = Date.now()/1000;
     
     guild = client.guilds.get('692591742570201118');
-    channel = guild.channels.get('741678960383099000');    
+    botChannel = guild.channels.get('741678960383099000');
+    roleChannel = guild.channels.get('741760525045727243');
     
-        //sendMessage(); // send the message once
+    sendMessage(); // send the message once
 });
 
 client.on('message', message => {
@@ -25,14 +27,21 @@ client.on('message', message => {
 });
 
 function sendMessage(){
-    channel.send("ready");
-    
+    roleChannel.send("React to the flag of your state below");
+    roleChannel.send("-------------------------------------");
+    roleChannel.send("Ohio");
+    roleChannel.send("Pennsylvania");
+    roleChannel.send("Indiana");
+    roleChannel.send("Kentucky");
+    roleChannel.send("Not in OHPAINKY");
+    roleChannel.send(" ");
+    roleChannel.send(" ");
 }
 
 
 
-var emojiname = ["ohiored", "ohiopurple"],
-    rolename = ["Dumbass", "FurFag"];
+var emojiname = ["ohioflag", "pennsylvaniaflag", "indianaflag", "kentuckyflag"],
+    rolename = ["Ohio", "Pennsylvania", "Indiana", "Kentucky"];
 
 
 //client.on("message", e => {
@@ -71,7 +80,7 @@ client.on('raw', packet => {
 });
 
 client.on("messageReactionAdd", async (reaction, user) => {
-    if (user && !user.bot && reaction.message.channel == channel)
+    if (user && !user.bot && reaction.message.channel == roleChannel)
     //if (user && !user.bot && reaction.message.channel.guild)
         console.log(reaction.emoji.name);
         for (let o in emojiname)
@@ -82,7 +91,7 @@ client.on("messageReactionAdd", async (reaction, user) => {
 });
 
 client.on("messageReactionRemove", async (reaction, user) => {
-    if (user && !user.bot && reaction.message.channel == channel)
+    if (user && !user.bot && reaction.message.channel == roleChannel)
         for (let o in emojiname)
             if (reaction.emoji.name == emojiname[o]) {
                 let i = reaction.message.guild.roles.find(reaction => reaction.name == rolename[o]);
