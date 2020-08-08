@@ -30,33 +30,33 @@ function sendMessage(){
 var emojiname = ["ohiored", "ohiopurple"],
     rolename = ["Dumbass", "FurFag"];
 
-client.on("message", e => {
-    if (e.content.startsWith(prefix + "reaction")) {
-        if (!e.channel.guild) return;
-        for (let o in emojiname) {
-            var n = [e.guild.emojis.find(e => e.name == emojiname[o])];
-            for (let o in n) e.react(n[o])
-        }
-    }
-});
+//client.on("message", e => {
+//    if (e.content.startsWith(prefix + "reaction")) {
+//        if (!e.channel.guild) return;
+//        for (let o in emojiname) {
+//            var n = [e.guild.emojis.find(e => e.name == emojiname[o])];
+//            for (let o in n) e.react(n[o])
+//        }
+//    }
+//});
 
-client.on("messageReactionAdd", (e, n) => {
-    if (n && !n.bot && e.message.channel.guild)
-        console.log(e.emoji.name);
+client.on("messageReactionAdd", (reaction, user) => {
+    if (user && !user.bot && reaction.message.channel.guild)
+        console.log(reaction.emoji.name);
         for (let o in emojiname)
-            if (e.emoji.name == emojiname[o]) {
-                let i = e.message.guild.roles.find(e => e.name == rolename[o]);
+            if (reaction.emoji.name == emojiname[o]) {
+                let i = reaction.message.guild.roles.find(reaction => reaction.name == rolename[o]);
                 console.log(i);
-                e.message.guild.member(n).addRole(i).catch(console.error)
+                reaction.message.guild.member(user).addRole(i).catch(console.error)
             }
 });
 
-client.on("messageReactionRemove", (e, n) => {
-    if (n && !n.bot && e.message.channel.guild)
+client.on("messageReactionRemove", (reaction, user) => {
+    if (user && !user.bot && reaction.message.channel.guild)
         for (let o in emojiname)
-            if (e.emoji.name == emojiname[o]) {
-                let i = e.message.guild.roles.find(e => e.name == rolename[o]);
-                e.message.guild.member(n).removeRole(i).catch(console.error)
+            if (reaction.emoji.name == emojiname[o]) {
+                let i = reaction.message.guild.roles.find(reaction => reaction.name == rolename[o]);
+                reaction.message.guild.member(user).removeRole(i).catch(console.error)
             }
 });
 
