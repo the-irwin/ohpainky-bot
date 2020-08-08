@@ -68,6 +68,7 @@ client.on('raw', packet => {
             client.emit('messageReactionRemove', reaction, client.users.get(packet.d.user_id));
         }
     });
+});
 
 client.on("messageReactionAdd", async (reaction, user) => {
     if (user && !user.bot && reaction.message.channel == channel)
