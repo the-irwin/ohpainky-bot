@@ -1,5 +1,7 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
+const guild = client.guilds.get('692591742570201118');
+const channel = guild.channels.get('741678960383099000');
 var timeStamp;
 
 client.on('ready', () => {
@@ -21,8 +23,6 @@ client.on('message', message => {
 });
 
 function sendMessage(){
-    var guild = client.guilds.get('692591742570201118');
-    var channel = guild.channels.get('741678960383099000');
     channel.send("ready");
     
 }
@@ -32,8 +32,6 @@ function sendMessage(){
 var emojiname = ["ohiored", "ohiopurple"],
     rolename = ["Dumbass", "FurFag"];
 
-    var guild = client.guilds.get('692591742570201118');
-    var channel = guild.channels.get('741678960383099000');
 
 //client.on("message", e => {
 //    if (e.content.startsWith(prefix + "reaction")) {
