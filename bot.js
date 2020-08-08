@@ -52,7 +52,6 @@ client.on("messageReactionAdd", (reaction, user) => {
         for (let o in emojiname)
             if (reaction.emoji.name == emojiname[o]) {
                 let i = reaction.message.guild.roles.find(reaction => reaction.name == rolename[o]);
-                console.log(i);
                 reaction.message.guild.member(user).addRole(i).catch(console.error)
             }
 });
