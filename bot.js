@@ -8,7 +8,7 @@ client.on('ready', () => {
         timeStamp = Date.now()/1000;
         
     
-        sendMessage(); // send the message once
+        //sendMessage(); // send the message once
 });
 
 client.on('message', message => {
@@ -42,9 +42,11 @@ client.on("message", e => {
 
 client.on("messageReactionAdd", (e, n) => {
     if (n && !n.bot && e.message.channel.guild)
+        console.log(e.emoji.name);
         for (let o in emojiname)
             if (e.emoji.name == emojiname[o]) {
                 let i = e.message.guild.roles.find(e => e.name == rolename[o]);
+                console.log(i);
                 e.message.guild.member(n).addRole(i).catch(console.error)
             }
 });
