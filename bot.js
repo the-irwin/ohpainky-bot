@@ -27,8 +27,13 @@ function sendMessage(){
     
 }
 
+
+
 var emojiname = ["ohiored", "ohiopurple"],
     rolename = ["Dumbass", "FurFag"];
+
+    var guild = client.guilds.get('692591742570201118');
+    var channel = guild.channels.get('741678960383099000');
 
 //client.on("message", e => {
 //    if (e.content.startsWith(prefix + "reaction")) {
@@ -41,7 +46,8 @@ var emojiname = ["ohiored", "ohiopurple"],
 //});
 
 client.on("messageReactionAdd", (reaction, user) => {
-    if (user && !user.bot && reaction.message.channel.guild)
+    if (user && !user.bot && reaction.message.channel == channel)
+    //if (user && !user.bot && reaction.message.channel.guild)
         console.log(reaction.emoji.name);
         for (let o in emojiname)
             if (reaction.emoji.name == emojiname[o]) {
