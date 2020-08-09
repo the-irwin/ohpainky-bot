@@ -87,7 +87,13 @@ client.on("messageReactionAdd", async (reaction, user) => {
             if (reaction.emoji.name == emojiname[o]) {
                 console.log(rolename[o]);
                 let i = reaction.message.guild.roles.find(reaction => reaction.name == rolename[o]);
-                reaction.message.guild.member(user).addRole(i).catch(console.error)
+                try {
+                    reaction.message.guild.member(user).addRole(i)
+                    message.author.send("**OHPAINKY:** " Gave you the " + rolename[o] + " role.")
+                }
+                catch(console.err) {
+                    document.getElementById("demo").innerHTML = err.message;
+                }
             }
 });
 
@@ -96,7 +102,13 @@ client.on("messageReactionRemove", async (reaction, user) => {
         for (let o in emojiname)
             if (reaction.emoji.name == emojiname[o]) {
                 let i = reaction.message.guild.roles.find(reaction => reaction.name == rolename[o]);
-                reaction.message.guild.member(user).removeRole(i).catch(console.error)
+                try {
+                    reaction.message.guild.member(user).removeRole(i)
+                    message.author.send("**OHPAINKY:** " Removed your " + rolename[o] + " role.")
+                }
+                catch(console.err) {
+                    document.getElementById("demo").innerHTML = err.message;
+                }
             }
 });
 
