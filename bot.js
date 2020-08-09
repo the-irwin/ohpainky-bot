@@ -104,7 +104,7 @@ client.on("messageReactionRemove", async (reaction, user) => {
                 let i = reaction.message.guild.roles.find(reaction => reaction.name == rolename[o]);
                 try {
                     reaction.message.guild.member(user).removeRole(i)
-                    message.author.send("*\*\OHPAINKY:\*\* " Removed your " + rolename[o] + " role.")
+                    message.author.send("\*\*OHPAINKY:\*\* " Removed your " + rolename[o] + " role.")
                 }
                 catch(console.err) {
                     document.getElementById("demo").innerHTML = err.message;
