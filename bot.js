@@ -40,8 +40,8 @@ function sendMessage(){
 
 
 
-var emojiname = ["ohioflag", "pennsylvaniaflag", "indianaflag", "kentuckyflag"],
-    rolename = ["Ohio", "Pennsylvania", "Indiana", "Kentucky"];
+var emojiname = ["ohioflag", "pennsylvaniaflag", "indianaflag", "kentuckyflag", "question"],
+    rolename = ["Ohio", "Pennsylvania", "Indiana", "Kentucky", "Not in OHPAINKY"];
 
 
 //client.on("message", e => {
