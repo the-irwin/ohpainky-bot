@@ -89,7 +89,7 @@ client.on("messageReactionAdd", async (reaction, user) => {
                 let i = reaction.message.guild.roles.find(reaction => reaction.name == rolename[o]);
                 try {
                     reaction.message.guild.member(user).addRole(i)
-                    message.author.send("**OHPAINKY:** Gave you the " + rolename[o] + " role.")
+                    reaction.message.guild.member(user).send("**OHPAINKY:** Gave you the " + rolename[o] + " role.")
                 }
                 catch(error) {
                     console.error(error);
@@ -104,7 +104,7 @@ client.on("messageReactionRemove", async (reaction, user) => {
                 let i = reaction.message.guild.roles.find(reaction => reaction.name == rolename[o]);
                 try {
                     reaction.message.guild.member(user).removeRole(i)
-                    message.author.send("**OHPAINKY:** Removed your " + rolename[o] + " role.")
+                    reaction.message.guild.member(user).send("**OHPAINKY:** Removed your " + rolename[o] + " role.")
                 }
                 catch(error) {
                     console.error(error);
