@@ -1,5 +1,7 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
+const roleChannelId = '741760525045727243';
+const botChannelId = '741678960383099000';
 var guild;
 var botChannel;
 var roleChannel;
@@ -11,8 +13,8 @@ client.on('ready', () => {
         timeStamp = Date.now()/1000;
     
     guild = client.guilds.get('692591742570201118');
-    botChannel = guild.channels.get('741678960383099000');
-    roleChannel = guild.channels.get('741760525045727243');
+    botChannel = guild.channels.get(botChannelId);
+    roleChannel = guild.channels.get(roleChannelId);
     
     //sendMessage(); // send the message once
 });
@@ -80,7 +82,7 @@ client.on('raw', packet => {
 });
 
 client.on("messageReactionAdd", async (reaction, user) => {
-    if (user && !user.bot && reaction.message.channel == roleChannel)
+    if (user && !user.bot && reaction.message.channel.id === roleChannelId)
     //if (user && !user.bot && reaction.message.channel.guild)
         console.log(reaction.emoji.name);
         for (let o in emojiname)
@@ -98,7 +100,7 @@ client.on("messageReactionAdd", async (reaction, user) => {
 });
 
 client.on("messageReactionRemove", async (reaction, user) => {
-    if (user && !user.bot && reaction.message.channel == roleChannel)
+    if (user && !user.bot && reaction.message.channel.id === roleChannelId)
         for (let o in emojiname)
             if (reaction.emoji.name == emojiname[o]) {
                 let i = reaction.message.guild.roles.find(reaction => reaction.name == rolename[o]);
