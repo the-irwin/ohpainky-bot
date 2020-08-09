@@ -85,6 +85,7 @@ client.on("messageReactionAdd", async (reaction, user) => {
         console.log(reaction.emoji.name);
         for (let o in emojiname)
             if (reaction.emoji.name == emojiname[o]) {
+                console.log(rolename[o]);
                 let i = reaction.message.guild.roles.find(reaction => reaction.name == rolename[o]);
                 reaction.message.guild.member(user).addRole(i).catch(console.error)
             }
