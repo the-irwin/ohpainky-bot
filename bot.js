@@ -91,8 +91,8 @@ client.on("messageReactionAdd", async (reaction, user) => {
                     reaction.message.guild.member(user).addRole(i)
                     message.author.send("**OHPAINKY:** Gave you the " + rolename[o] + " role.")
                 }
-                catch(console.err) {
-                    document.getElementById("demo").innerHTML = err.message;
+                catch(error) {
+                    console.error(error);
                 }
             }
 });
@@ -106,8 +106,8 @@ client.on("messageReactionRemove", async (reaction, user) => {
                     reaction.message.guild.member(user).removeRole(i)
                     message.author.send("**OHPAINKY:** Removed your " + rolename[o] + " role.")
                 }
-                catch(console.err) {
-                    document.getElementById("demo").innerHTML = err.message;
+                catch(error) {
+                    console.error(error);
                 }
             }
 });
