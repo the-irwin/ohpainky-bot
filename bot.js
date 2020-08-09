@@ -82,7 +82,7 @@ client.on('raw', packet => {
 });
 
 client.on("messageReactionAdd", async (reaction, user) => {
-    if (user && !user.bot && reaction.message.channel.id === roleChannelId)
+    if (user && !user.bot && reaction.message.channel.id != '' && reaction.message.channel.id === roleChannelId)
     //if (user && !user.bot && reaction.message.channel.guild)
         console.log(reaction.message.channel.id);
         for (let o in emojiname)
@@ -100,7 +100,7 @@ client.on("messageReactionAdd", async (reaction, user) => {
 });
 
 client.on("messageReactionRemove", async (reaction, user) => {
-    if (user && !user.bot && reaction.message.channel.id === roleChannelId)
+    if (user && !user.bot && reaction.message.channel.id != '' && reaction.message.channel.id === roleChannelId)
         for (let o in emojiname)
             if (reaction.emoji.name == emojiname[o]) {
                 let i = reaction.message.guild.roles.find(reaction => reaction.name == rolename[o]);
