@@ -14,7 +14,7 @@ client.on('ready', () => {
     botChannel = guild.channels.get('741678960383099000');
     roleChannel = guild.channels.get('741760525045727243');
     
-    sendMessage(); // send the message once
+    //sendMessage(); // send the message once
 });
 
 client.on('message', message => {
