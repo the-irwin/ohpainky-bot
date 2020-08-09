@@ -84,7 +84,7 @@ client.on('raw', packet => {
 client.on("messageReactionAdd", async (reaction, user) => {
     if (user && !user.bot && reaction.message.channel.id === roleChannelId)
     //if (user && !user.bot && reaction.message.channel.guild)
-        console.log(reaction.emoji.name);
+        console.log(reaction.message.channel.id);
         for (let o in emojiname)
             if (reaction.emoji.name == emojiname[o]) {
                 console.log(rolename[o]);
