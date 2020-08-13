@@ -1,7 +1,7 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
 const sRoleChannelId = '741760525045727243';
-const roleChannelId = '707375163171143701';
+const roleChannelId = '741678960383099000';
 const botChannelId = '741678960383099000';
 var guild;
 var botChannel;
@@ -32,7 +32,7 @@ client.on('message', message => {
 });
 
 function sendMessage(){
-    roleChannel.send("React with :grass_block: to get build event announcements");
+    roleChannel.send("React with <:grassblock:743579727809478706> to get build event announcements");
     console.log("sent");
     //roleChannel.send("-------------------------------------");
     //roleChannel.send("Ohio");
@@ -46,7 +46,7 @@ function sendMessage(){
 
 
 
-var emojiname = ["ohioflag", "pennsylvaniaflag", "indianaflag", "kentuckyflag", "questionmark", "grass_block"],
+var emojiname = ["ohioflag", "pennsylvaniaflag", "indianaflag", "kentuckyflag", "questionmark", "grassblock"],
     eChannel = [sRoleChannel, sRoleChannel, sRoleChannel, sRoleChannel, sRoleChannel, roleChannel],
     rolename = ["Ohio", "Pennsylvania", "Indiana", "Kentucky", "Not in OHPAINKY", "build events"];
 
