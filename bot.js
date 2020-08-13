@@ -8,6 +8,9 @@ var botChannel;
 var sRoleChannel;
 var roleChannel;
 var timeStamp;
+var emojiname;
+var eChannel;
+var rolename;
 
 client.on('ready', () => {
     console.log('I am ready!');
@@ -19,7 +22,11 @@ client.on('ready', () => {
     sRoleChannel = guild.channels.get(sRoleChannelId);
     roleChannel = guild.channels.get(roleChannelId);
     
-    //sendMessage(); // send the message once
+    emojiname = ["ohioflag", "pennsylvaniaflag", "indianaflag", "kentuckyflag", "questionmark", "grassblock"];
+    eChannel = [sRoleChannel, sRoleChannel, sRoleChannel, sRoleChannel, sRoleChannel, roleChannel];
+    rolename = ["Ohio", "Pennsylvania", "Indiana", "Kentucky", "Not in OHPAINKY", "build events"];
+    
+    sendMessage(); // send the message once
 });
 
 client.on('message', message => {
@@ -46,9 +53,7 @@ function sendMessage(){
 
 
 
-var emojiname = ["ohioflag", "pennsylvaniaflag", "indianaflag", "kentuckyflag", "questionmark", "grassblock"],
-    eChannel = [sRoleChannel, sRoleChannel, sRoleChannel, sRoleChannel, sRoleChannel, roleChannel],
-    rolename = ["Ohio", "Pennsylvania", "Indiana", "Kentucky", "Not in OHPAINKY", "build events"];
+
 
 
 //client.on("message", e => {
