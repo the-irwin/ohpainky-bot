@@ -1,9 +1,11 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
-const roleChannelId = '741760525045727243';
+const sRoleChannelId = '741760525045727243';
+const roleChannelId = '707375163171143701';
 const botChannelId = '741678960383099000';
 var guild;
 var botChannel;
+var sRoleChannel;
 var roleChannel;
 var timeStamp;
 
@@ -14,6 +16,7 @@ client.on('ready', () => {
     
     guild = client.guilds.get('692591742570201118');
     botChannel = guild.channels.get(botChannelId);
+    sRoleChannel = guild.channels.get(sRoleChannelId);
     roleChannel = guild.channels.get(roleChannelId);
     
     //sendMessage(); // send the message once
@@ -29,21 +32,22 @@ client.on('message', message => {
 });
 
 function sendMessage(){
-    roleChannel.send("React to the flag of your state below");
-    roleChannel.send("-------------------------------------");
-    roleChannel.send("Ohio");
-    roleChannel.send("Pennsylvania");
-    roleChannel.send("Indiana");
-    roleChannel.send("Kentucky");
-    roleChannel.send("Not in OHPAINKY");
-    roleChannel.send(" ");
-    roleChannel.send(" ");
+    roleChannel.send("React with :grass_block: to get build event announcements");
+    //roleChannel.send("-------------------------------------");
+    //roleChannel.send("Ohio");
+    //roleChannel.send("Pennsylvania");
+    //roleChannel.send("Indiana");
+    //roleChannel.send("Kentucky");
+    //roleChannel.send("Not in OHPAINKY");
+    //roleChannel.send(" ");
+    //roleChannel.send(" ");
 }
 
 
 
-var emojiname = ["ohioflag", "pennsylvaniaflag", "indianaflag", "kentuckyflag", "questionmark"],
-    rolename = ["Ohio", "Pennsylvania", "Indiana", "Kentucky", "Not in OHPAINKY"];
+var emojiname = ["ohioflag", "pennsylvaniaflag", "indianaflag", "kentuckyflag", "questionmark", "grass_block"],
+    eChannel = [sRoleChannel, sRoleChannel, sRoleChannel, sRoleChannel, sRoleChannel, roleChannel],
+    rolename = ["Ohio", "Pennsylvania", "Indiana", "Kentucky", "Not in OHPAINKY", "build events"];
 
 
 //client.on("message", e => {
@@ -82,11 +86,11 @@ client.on('raw', packet => {
 });
 
 client.on("messageReactionAdd", async (reaction, user) => {
-    if (user && !user.bot && reaction.message.channel == roleChannel) {
+    if (user && !user.bot) {
     //if (user && !user.bot && reaction.message.channel.guild)
         //console.log(reaction.message.channel.id);
         for (let o in emojiname) {
-            if (reaction.emoji.name == emojiname[o]) {
+            if (reaction.emoji.name == emojiname[o] && reaction.message.channel == eChannel[o]) {
                 //console.log(rolename[o]);
                 let i = reaction.message.guild.roles.find(reaction => reaction.name == rolename[o]);
                 try {
@@ -102,9 +106,9 @@ client.on("messageReactionAdd", async (reaction, user) => {
 });
 
 client.on("messageReactionRemove", async (reaction, user) => {
-    if (user && !user.bot && reaction.message.channel == roleChannel) {
+    if (user && !user.bot) {
         for (let o in emojiname) {
-            if (reaction.emoji.name == emojiname[o]) {
+            if (reaction.emoji.name == emojiname[o] && reaction.message.channel == eChannel[o]) {
                 let i = reaction.message.guild.roles.find(reaction => reaction.name == rolename[o]);
                 try {
                     reaction.message.guild.member(user).removeRole(i)
