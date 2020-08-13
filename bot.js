@@ -19,7 +19,7 @@ client.on('ready', () => {
     sRoleChannel = guild.channels.get(sRoleChannelId);
     roleChannel = guild.channels.get(roleChannelId);
     
-    sendMessage(); // send the message once
+    //sendMessage(); // send the message once
 });
 
 client.on('message', message => {
