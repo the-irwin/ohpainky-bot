@@ -33,6 +33,7 @@ client.on('message', message => {
 
 function sendMessage(){
     roleChannel.send("React with :grass_block: to get build event announcements");
+    console.log("sent");
     //roleChannel.send("-------------------------------------");
     //roleChannel.send("Ohio");
     //roleChannel.send("Pennsylvania");
