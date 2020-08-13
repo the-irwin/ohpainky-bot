@@ -1,7 +1,7 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
 const sRoleChannelId = '741760525045727243';
-const roleChannelId = '741678960383099000';
+const roleChannelId = '707375163171143701';
 const botChannelId = '741678960383099000';
 var guild;
 var botChannel;
