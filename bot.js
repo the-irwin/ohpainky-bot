@@ -92,11 +92,13 @@ client.on("messageReactionAdd", async (reaction, user) => {
         //console.log(reaction.message.channel.id);
         for (let o in emojiname) {
             if (reaction.emoji.name == emojiname[o] && reaction.message.channel == eChannel[o]) {
-                //console.log(rolename[o]);
+                console.log(rolename[o]);
                 let i = reaction.message.guild.roles.find(reaction => reaction.name == rolename[o]);
                 try {
-                    reaction.message.guild.member(user).addRole(i)
-                    reaction.message.guild.member(user).send("**OHPAINKY:** Gave you the " + rolename[o] + " role.")
+                    reaction.message.guild.member(user).addRole(i);
+                    console.log("added role");
+                    reaction.message.guild.member(user).send("**OHPAINKY:** Gave you the " + rolename[o] + " role.");
+                    console.log("sent DM");
                 }
                 catch(error) {
                     console.error(error);
@@ -110,10 +112,13 @@ client.on("messageReactionRemove", async (reaction, user) => {
     if (user && !user.bot) {
         for (let o in emojiname) {
             if (reaction.emoji.name == emojiname[o] && reaction.message.channel == eChannel[o]) {
+                console.log(rolename[o]);
                 let i = reaction.message.guild.roles.find(reaction => reaction.name == rolename[o]);
                 try {
-                    reaction.message.guild.member(user).removeRole(i)
-                    reaction.message.guild.member(user).send("**OHPAINKY:** Removed your " + rolename[o] + " role.")
+                    reaction.message.guild.member(user).removeRole(i);
+                    console.log("removed role");
+                    reaction.message.guild.member(user).send("**OHPAINKY:** Removed your " + rolename[o] + " role.");
+                    console.log("sent DM");
                 }
                 catch(error) {
                     console.error(error);
