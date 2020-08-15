@@ -26,7 +26,7 @@ client.on('ready', () => {
     eChannel = [sRoleChannel, sRoleChannel, sRoleChannel, sRoleChannel, sRoleChannel, roleChannel];
     rolename = ["Ohio", "Pennsylvania", "Indiana", "Kentucky", "Not in OHPAINKY", "build events"];
     
-    sendMessage(); // send the message once
+    //sendMessage(); // send the message once
 });
 
 client.on('message', message => {
