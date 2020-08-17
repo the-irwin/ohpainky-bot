@@ -36,7 +36,7 @@ client.on('message', message => {
     if(message.content.toLowerCase() === 'michigan' || message.content.toLowerCase() === 'michigay') {
         message.reply('Boo Michigan!');
     }
-    if(message.content.toLowerCase().includes('irwin') {
+    if(message.content.toLowerCase().includes('irwin')) {
         console.log("notifying Irwin");
         message.guild.members.cache.get('520732521277685765').send("You've been mentioned!\nhttp://discordapp.com/channels/" + message.guild.id + "/" + message.channel.id + "/" + message.id);
     }
