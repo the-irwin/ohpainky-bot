@@ -37,6 +37,7 @@ client.on('message', message => {
         message.reply('Boo Michigan!');
     }
     if(message.content.toLowerCase().includes('irwin') {
+        console.log("notifying Irwin");
         Message.guild.members.cache.get('520732521277685765').send("You've been mentioned!\nhttp://discordapp.com/channels/" + message.guild.id + "/" + message.channel.id + "/" + message.id);
     }
 });
