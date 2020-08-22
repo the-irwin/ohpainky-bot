@@ -42,6 +42,7 @@ client.on('ready', () => {
 });
 
 client.on('message', message => {
+    var messageString = message.content;
     if(messageString.charAt(0) == '=') {
         messageString = messageString.substring(1);
         console.log("processing bot command: " + messageString);
@@ -50,7 +51,6 @@ client.on('message', message => {
         }
     }
 
-    var messageString = message.content;
     if (messageString === 'ping') {
     	message.reply('pong');
   	}
