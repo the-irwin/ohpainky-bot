@@ -67,6 +67,9 @@ client.on('message', message => {
         message.reply('Boo Michigan!');
     }
     if(messageString.toLowerCase().includes('irwin')) {
+        if(message.user.id == '746818356434305075' && messageString.indexOf('irwin') < 6) {
+            break;
+        }
         message.guild.members.find(m => m.id === "520732521277685765").send("You've been mentioned!\n"+ message.member.user.tag + " said: " + "\"" + message.content + "\"\nhttp://discordapp.com/channels/" + message.guild.id + "/" + message.channel.id + "/" + message.id);
     }
     
