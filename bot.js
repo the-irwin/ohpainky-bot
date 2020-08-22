@@ -96,7 +96,6 @@ function importBotCommand(message) {
             console.log("incorrect array length");
             return;
         }
-        outer:
         if(botCommands.has(input)) {
             botCommandsChannel.fetchMessages().then(messages => {
                 console.log(`Received ${messages.size} messages`);
@@ -104,7 +103,7 @@ function importBotCommand(message) {
                 messages.forEach(m => {
                     if(m.content.split(" ")[0] == "input" && m != message) {
                         m.delete();
-                        break outer;
+                        break;
                     }
                 });
             });
