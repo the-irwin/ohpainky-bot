@@ -38,12 +38,6 @@ client.on('ready', () => {
         //Iterate through the messages here with the variable "messages".
         messages.forEach(message => importBotCommand(message));
     });
-    
-    botChannel.fetchMessage('746731001077825548').then(m => {
-                    console.log(m.content);
-                }).catch(error => {
-                    console.error(error);
-                });
 
 });
 
@@ -103,11 +97,11 @@ function importBotCommand(message) {
             return;
         }
         if(botCommands.has(input)) {
-            botChannel.fetchMessage(botCommands.get(input)[1]).then(m => {
+            botCommandsChannel.fetchMessage(botCommands.get(input)[1]).then(m => {
                 m.delete();
                 console.log("deleting message with id: " + botCommands.get(input)[1] + " and content " + botCommands.get(input)[0])
             }).catch (error => {
-                //console.log("error while deleting message with id: " + botCommands.get(input)[1] + " and content " + m.content);
+                console.log("error while deleting message with id: " + botCommands.get(input)[1] + " and content " + m.content);
                 console.error(error);
                 
                 
