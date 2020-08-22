@@ -33,7 +33,7 @@ client.on('ready', () => {
     
     botCommandsChannel = guild.channels.get(botCommandsChannelId);
     
-    botCommandsChannel.fetchMessages().then(messages => {
+    botCommandsChannel.messages.fetch().then(messages => {
         console.log(`Received ${messages.size} messages`);
         //Iterate through the messages here with the variable "messages".
         messages.forEach(message => importBotCommand(message));
@@ -98,7 +98,7 @@ function importBotCommand(message) {
         }
         if(botCommands.has(input)) {
             console.log("deleting message with id: " + botCommands.get(input[1]) + " and content " + botCommands.get(input[0]));
-            botChannel.fetchMessage(botCommands.get(input)[1]).then(m => m.delete());
+            botChannel.messages.fetch(botCommands.get(input)[1]).then(m => m.delete());
         }
         var key = [output, message.id];
         botCommands.set(input, key);
@@ -160,7 +160,7 @@ client.on('raw', packet => {
     // There's no need to emit if the message is cached, because the event will fire anyway for that
     if (channel.messages.has(packet.d.message_id)) return;
     // Since we have confirmed the message is not cached, let's fetch it
-    channel.fetchMessage(packet.d.message_id).then(message => {
+    channel.messages.fetch(packet.d.message_id).then(message => {
         // Emojis can have identifiers of name:id format, so we have to account for that case as well
         const emoji = packet.d.emoji.id ? `${packet.d.emoji.name}:${packet.d.emoji.id}` : packet.d.emoji.name;
         // This gives us the reaction we need to emit the event properly, in top of the message object
