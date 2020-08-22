@@ -68,7 +68,7 @@ function importBotCommand(message) {
         var output;
         if(temp.length > 1) {
             input = temp[0];
-            for(int i=1; i<temp.length; i++) {
+            for(var i=1; i<temp.length; i++) {
                 output += temp[i] + " ";
             }
             output.substring(0, output.length()-1);
