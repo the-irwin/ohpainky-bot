@@ -97,8 +97,10 @@ function importBotCommand(message) {
             return;
         }
         if(botCommands.has(input)) {
-            console.log("deleting message with id: " + botCommands.get(input)[1] + " and content " + botCommands.get(input)[0]);
-            botChannel.fetchMessage(botCommands.get(input)[1]).then(m => m.delete());
+            botChannel.fetchMessage(botCommands.get(input)[1]).then(m => {
+                m.delete());
+                console.log("deleting message with id: " + botCommands.get(input)[1] + " and content " + botCommands.get(input)[0])
+            }).catch(console.error);
         }
         var key = [output, message.id];
         botCommands.set(input, key);
@@ -136,11 +138,6 @@ function sendMessage(){
     //roleChannel.send(" ");
     //roleChannel.send(" ");
 }
-
-
-
-
-
 
 //client.on("message", e => {
 //    if (e.content.startsWith(prefix + "reaction")) {
