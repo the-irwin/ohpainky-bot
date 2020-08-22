@@ -12,6 +12,7 @@ var timeStamp;
 var emojiname;
 var eChannel;
 var rolename;
+var botCommandsChannel;
 var botCommands = new Map();
 
 client.on('ready', () => {
@@ -30,7 +31,7 @@ client.on('ready', () => {
     
     //sendMessage(); // send the message once
     
-    const botCommandsChannel = client.guilds.get('727285430499672115').channels.get(botCommandsChannelId);
+    botCommandsChannel = client.guilds.get('727285430499672115').channels.get(botCommandsChannelId);
     
     botCommandsChannel.messages.fetch().then(messages => {
     console.log(`Received ${messages.size} messages`);
