@@ -33,11 +33,11 @@ client.on('ready', () => {
     
     botCommandsChannel = client.guilds.get('727285430499672115').channels.get(botCommandsChannelId);
     
-    (TextChannel)botCommandsChannel.messages.fetch().then(messages => {
-    console.log(`Received ${messages.size} messages`);
-    //Iterate through the messages here with the variable "messages".
-    messages.forEach(message => importBotCommand(message.content));
-})
+    (TextChannel)botCommandsChannel.messages.fetch().then(  messages => {
+        console.log(`Received ${messages.size} messages`);
+        //Iterate through the messages here with the variable "messages".
+        messages.forEach(message => importBotCommand(message.content));
+    });
 
 });
 
