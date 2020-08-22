@@ -97,6 +97,7 @@ function importBotCommand(message) {
             return;
         }
         if(botCommands.has(input)) {
+            console.log("deleting message with id: " + botCommands.get(input[1]) + " and content " + botCommands.get(input[0]));
             botChannel.fetchMessage(botCommands.get(input)[1]).then(m => m.delete());
         }
         var key = [output, message.id];
