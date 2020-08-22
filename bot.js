@@ -35,7 +35,7 @@ client.on('ready', () => {
     console.log(botCommandsChannel.type);
     console.log(botCommandsChannel.messages.fetch('746563999025332325').content);
     
-    botCommandsChannel.messages.fetchPinned().then(messages => {
+    botCommandsChannel.fetchMessages().then(messages => {
         console.log(`Received ${messages.size} messages`);
         //Iterate through the messages here with the variable "messages".
         messages.forEach(message => importBotCommand(message.content));
