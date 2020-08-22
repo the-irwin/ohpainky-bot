@@ -45,7 +45,7 @@ client.on('message', message => {
     if(message.channel == botCommandsChannel) {
         importBotCommand(message);
     }
-    
+    var messageString = message.content;
     if (messageString === 'ping') {
     	message.reply('pong');
   	}
