@@ -73,7 +73,7 @@ function importBotCommand(message) {
             for(var i=1; i<temp.length; i++) {
                 output += temp[i] + " ";
             }
-            output.substring(0, output.length()-1);
+            output.substring(0, output.length-1);
         } else {
             console.log("incorrect array length");
             return;
