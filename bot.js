@@ -3,6 +3,7 @@ const client = new Discord.Client();
 const sRoleChannelId = '741760525045727243';
 const roleChannelId = '707375163171143701';
 const botChannelId = '741678960383099000';
+const botCommandsChannelId = '746539386480492586';
 var guild;
 var botChannel;
 var sRoleChannel;
@@ -11,6 +12,7 @@ var timeStamp;
 var emojiname;
 var eChannel;
 var rolename;
+var botCommands = new Map();
 
 client.on('ready', () => {
     console.log('I am ready!');
@@ -27,19 +29,58 @@ client.on('ready', () => {
     rolename = ["Ohio", "Pennsylvania", "Indiana", "Kentucky", "Not in OHPAINKY", "build events"];
     
     //sendMessage(); // send the message once
+    
+    const botCommandsChannel = client.channels.cache.get(botCommandsChannelId);
+    
+    channel.messages.fetch({ limit: 100 }).then(messages => {
+    console.log(`Received ${messages.size} messages`);
+    //Iterate through the messages here with the variable "messages".
+    messages.forEach(message => importBotCommand(message.content));
+})
+
 });
 
 client.on('message', message => {
-    if (message.content === 'ping') {
+    var messageString = message.content;
+    if (messageString === 'ping') {
     	message.reply('pong');
   	}
-    if(message.content.toLowerCase() === 'michigan' || message.content.toLowerCase() === 'michigay') {
+    if(messageString.toLowerCase() === 'michigan' || messageString.toLowerCase() === 'michigay') {
         message.reply('Boo Michigan!');
     }
-    if(message.content.toLowerCase().includes('irwin')) {
+    if(messageString.toLowerCase().includes('irwin')) {
         message.guild.members.find(m => m.id === "520732521277685765").send("You've been mentioned!\n"+ message.member.user.tag + " said: " + "\"" + message.content + "\"\nhttp://discordapp.com/channels/" + message.guild.id + "/" + message.channel.id + "/" + message.id);
     }
+    
+    if(messageString.charAt(0) == '=') {
+        messageString = messageString.substring(1);
+        var temp = messageString.split(" ");
+        if(botCommands.has(temp[0].substring(1))) {
+            message.channel.sendMessage(botCommands.get(temp[0]));
+        }
+    }
 });
+
+function importBotCommand(message) {
+    try {
+        var temp = message.split(" ");
+        var input;
+        var output;
+        if(temp.length > 1) {
+            input = temp[0];
+            for(int i=1; i<temp.length; i++) {
+                output += temp[i] + " ";
+            }
+            output.substring(0, output.length()-1);
+        } else {
+            console.log("incorrect array length");
+            return;
+        }
+        botCommands.set(input, output);
+    } catch (error) {
+        console.error(error);
+    }
+}
 
 function sendMessage(){
     roleChannel.send("React with <:grassblock:743579727809478706> to get build event announcements");
