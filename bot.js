@@ -74,7 +74,7 @@ client.on('messageDelete', message => {
 
 client.on('messageUpdate', (oldMessage, newMessage) => {
     
-    if(new.channel == botCommandsChannel) {
+    if(newMessage.channel == botCommandsChannel) {
         deleteBotCommand(oldMessage);
         importBotCommand(newMessage);
     }
