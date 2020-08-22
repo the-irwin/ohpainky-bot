@@ -3,7 +3,7 @@ const client = new Discord.Client();
 const sRoleChannelId = '741760525045727243';
 const roleChannelId = '707375163171143701';
 const botChannelId = '741678960383099000';
-const botCommandsChannelId = '746539386480492586';
+const botCommandsChannelId = '746580589020315738';
 var guild;
 var botChannel;
 var sRoleChannel;
@@ -31,7 +31,7 @@ client.on('ready', () => {
     
     //sendMessage(); // send the message once
     
-    botCommandsChannel = client.guilds.get('727285430499672115').channels.get(botCommandsChannelId);
+    botCommandsChannel = guild.channels.get(botCommandsChannelId);
     
     botCommandsChannel.fetchMessages().then(messages => {
         console.log(`Received ${messages.size} messages`);
