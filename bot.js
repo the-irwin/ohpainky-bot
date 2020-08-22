@@ -32,21 +32,18 @@ client.on('ready', () => {
     //sendMessage(); // send the message once
     
     botCommandsChannel = client.guilds.get('727285430499672115').channels.get(botCommandsChannelId);
-    console.log(botCommandsChannel.type);
     
     botCommandsChannel.fetchMessages().then(messages => {
         console.log(`Received ${messages.size} messages`);
         //Iterate through the messages here with the variable "messages".
-        messages.forEach(message => importBotCommand(message.content));
+        messages.forEach(message => importBotCommand(message));
     });
 
 });
 
 client.on('message', message => {
-    var messageString = message.content;
-    
     if(message.channel == botCommandsChannel) {
-        importBotCommand(messageString);
+        importBotCommand(message);
     }
     
     if (messageString === 'ping') {
@@ -68,10 +65,25 @@ client.on('message', message => {
     }
 });
 
+client.on('messageDelete', message => {
+    
+    if(message.channel == botCommandsChannel) {
+        deleteBotCommand(message);
+    }
+});
+
+client.on('messageUpdate', (old, new) => {
+    
+    if(new.channel == botCommandsChannel) {
+        deleteBotCommand(old);
+        importBotCommand(new);
+    }
+});
+
 function importBotCommand(message) {
     try {
-        console.log(message);
-        var temp = message.split(" ");
+        console.log(message.content);
+        var temp = message.content.split(" ");
         var input;
         var output = "";
         if(temp.length > 1) {
@@ -84,7 +96,37 @@ function importBotCommand(message) {
             console.log("incorrect array length");
             return;
         }
+        outer:
+        if(botCommands.has(input)) {
+            botCommandsChannel.fetchMessages().then(messages => {
+                console.log(`Received ${messages.size} messages`);
+                //Iterate through the messages here with the variable "messages".
+                messages.forEach(m => {
+                    if(m.content.split(" ")[0] == "input" && m != message) {
+                        m.delete();
+                        break outer;
+                    }
+                });
+            });
+        }
         botCommands.set(input, output);
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+function deleteBotCommand(message) {
+    try {
+        console.log(message.content + " is being deleted");
+        var temp = message.content.split(" ");
+        var input;
+        if(temp.length > 1) {
+            input = temp[0];
+        } else {
+            console.log("incorrect array length");
+            return;
+        }
+        botCommands.delete(input);
     } catch (error) {
         console.error(error);
     }
