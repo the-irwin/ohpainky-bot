@@ -57,9 +57,8 @@ client.on('message', message => {
     if(messageString.charAt(0) == '=') {
         messageString = messageString.substring(1);
         console.log("processing bot command: " + messageString);
-        var temp = messageString.split(" ");
-        if(botCommands.has(temp[0].substring(1))) {
-            message.channel.sendMessage(botCommands.get(temp[0]));
+        if(botCommands.has(messageString)) {
+            message.channel.sendMessage(botCommands.get(messageString));
         }
     }
 });
