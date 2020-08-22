@@ -55,7 +55,7 @@ client.on('message', message => {
     	message.reply('pong');
   	}
     console.log(messageString);
-    messageString = messageString.replace(/<.*?S/>, '') //ignores all mentions
+    messageString = messageString.replace(/<\/?[^>]+>/g, '') //ignores all mentions
     console.log(messageString);
     if (messageString.toLowerCase().includes('eat you')) {
         message.reply('kinky');
