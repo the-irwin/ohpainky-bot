@@ -34,7 +34,7 @@ client.on('ready', () => {
     botCommandsChannel = client.guilds.get('727285430499672115').channels.get(botCommandsChannelId);
     console.log(botCommandsChannel.type);
     
-    botCommandsChannel.fetchPinned().then(messages => {
+    botCommandsChannel.fetchMessages().then(messages => {
         console.log(`Received ${messages.size} messages`);
         //Iterate through the messages here with the variable "messages".
         messages.forEach(message => importBotCommand(message.content));
