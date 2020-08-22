@@ -65,9 +65,10 @@ client.on('message', message => {
 
 function importBotCommand(message) {
     try {
+        console.log(message);
         var temp = message.split(" ");
         var input;
-        var output;
+        var output = "";
         if(temp.length > 1) {
             input = temp[0];
             for(var i=1; i<temp.length; i++) {
