@@ -60,7 +60,7 @@ client.on('message', message => {
         messageString = messageString.substring(1);
         console.log("processing bot command: " + messageString);
         if(botCommands.has(messageString)) {
-            message.channel.send(botCommands.get(messageString));
+            message.channel.send(botCommands.get(messageString)[0]);
         }
     }
 });
@@ -100,15 +100,13 @@ function importBotCommand(message) {
             botCommandsChannel.fetchMessages().then(messages => {
                 console.log(`Received ${messages.size} messages`);
                 //Iterate through the messages here with the variable "messages".
-                for(let m in messages) {
-                    if(m.content.split(" ")[0] == input && m.id != message.id) {
-                        botChannel.fetchMessage(m).then(m.delete());
-                        break;
-                    }
-                };
+                
+                botChannel.fetchMessage(botCommands.get(input)[1]).then(m => m.delete());
+                break;
             });
         }
-        botCommands.set(input, output);
+        var key = [output, message.id];
+        botCommands.set(input, key);
     } catch (error) {
         console.error(error);
     }
