@@ -103,6 +103,12 @@ function importBotCommand(message) {
             }).catch (error => {
                 console.log("error while deleting message with id: " + botCommands.get(input)[1] + " and content " + m.content);
                 console.error(error);
+                
+                botChannel.fetchMessage('746731001077825548').then(m => {
+                    console.log(m.content);
+                }).catch(error => {
+                    console.error(error);
+                });
             });
         }
         var key = [output, message.id];
