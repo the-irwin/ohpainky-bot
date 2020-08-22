@@ -100,9 +100,10 @@ function importBotCommand(message) {
             botChannel.fetchMessage(botCommands.get(input)[1]).then(m => {
                 m.delete();
                 console.log("deleting message with id: " + botCommands.get(input)[1] + " and content " + botCommands.get(input)[0])
-            }).catch (error) {
-                console.log("error while deleting message with id: " + botCommands.get(input)[1] + " and content " + botCommands.get(input)[0])
-            };
+            }).catch (error => {
+                console.log("error while deleting message with id: " + botCommands.get(input)[1] + " and content " + botCommands.get(input)[0]);
+                console.error(error);
+            });
         }
         var key = [output, message.id];
         botCommands.set(input, key);
