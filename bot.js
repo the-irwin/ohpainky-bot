@@ -42,20 +42,6 @@ client.on('ready', () => {
 });
 
 client.on('message', message => {
-    if(message.channel == botCommandsChannel) {
-        importBotCommand(message);
-    }
-    var messageString = message.content;
-    if (messageString === 'ping') {
-    	message.reply('pong');
-  	}
-    if(messageString.toLowerCase() === 'michigan' || messageString.toLowerCase() === 'michigay') {
-        message.reply('Boo Michigan!');
-    }
-    if(messageString.toLowerCase().includes('irwin')) {
-        message.guild.members.find(m => m.id === "520732521277685765").send("You've been mentioned!\n"+ message.member.user.tag + " said: " + "\"" + message.content + "\"\nhttp://discordapp.com/channels/" + message.guild.id + "/" + message.channel.id + "/" + message.id);
-    }
-    
     if(messageString.charAt(0) == '=') {
         messageString = messageString.substring(1);
         console.log("processing bot command: " + messageString);
@@ -63,6 +49,28 @@ client.on('message', message => {
             message.channel.send(botCommands.get(messageString)[0]);
         }
     }
+
+    var messageString = message.content;
+    if (messageString === 'ping') {
+    	message.reply('pong');
+  	}
+    if (messageString.toLowerCase().includes('eat you')) {
+        message.reply('kinky');
+    }
+    if (messageString.includes('69')) {
+        message.reply('nice');
+    }
+    if(messageString.toLowerCase() === 'michigan' || messageString.toLowerCase() === 'michigay') {
+        message.reply('Boo Michigan!');
+    }
+    if(messageString.toLowerCase().includes('irwin')) {
+        message.guild.members.find(m => m.id === "520732521277685765").send("You've been mentioned!\n"+ message.member.user.tag + " said: " + "\"" + message.content + "\"\nhttp://discordapp.com/channels/" + message.guild.id + "/" + message.channel.id + "/" + message.id);
+    }
+    
+    if(message.channel == botCommandsChannel) {
+        importBotCommand(message);
+    }
+    
 });
 
 client.on('messageDelete', message => {
