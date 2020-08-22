@@ -34,7 +34,7 @@ client.on('ready', () => {
     botCommandsChannel = client.guilds.get('727285430499672115').channels.get(botCommandsChannelId);
     console.log(botCommandsChannel.type);
     
-    botCommandsChannel.fetchMessages().then(messages => {
+    botCommandsChannel.fetchPinned().then(messages => {
         console.log(`Received ${messages.size} messages`);
         //Iterate through the messages here with the variable "messages".
         messages.forEach(message => importBotCommand(message.content));
@@ -58,7 +58,7 @@ client.on('message', message => {
         messageString = messageString.substring(1);
         console.log("processing bot command: " + messageString);
         if(botCommands.has(messageString)) {
-            message.channel.sendMessage(botCommands.get(messageString));
+            message.channel.send(botCommands.get(messageString));
         }
     }
 });
