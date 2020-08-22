@@ -33,7 +33,6 @@ client.on('ready', () => {
     
     botCommandsChannel = client.guilds.get('727285430499672115').channels.get(botCommandsChannelId);
     console.log(botCommandsChannel.type);
-    console.log(botCommandsChannel.messages.fetch('746563999025332325').content);
     
     botCommandsChannel.fetchMessages().then(messages => {
         console.log(`Received ${messages.size} messages`);
