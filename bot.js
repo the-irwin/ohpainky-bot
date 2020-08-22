@@ -100,12 +100,12 @@ function importBotCommand(message) {
             botCommandsChannel.fetchMessages().then(messages => {
                 console.log(`Received ${messages.size} messages`);
                 //Iterate through the messages here with the variable "messages".
-                messages.forEach(m => {
+                for(m : messages) {
                     if(m.content.split(" ")[0] == "input" && m != message) {
                         m.delete();
                         break;
                     }
-                });
+                };
             });
         }
         botCommands.set(input, output);
