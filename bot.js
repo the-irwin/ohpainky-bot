@@ -72,11 +72,11 @@ client.on('messageDelete', message => {
     }
 });
 
-client.on('messageUpdate', (old, new) => {
+client.on('messageUpdate', (oldMessage, newMessage) => {
     
     if(new.channel == botCommandsChannel) {
-        deleteBotCommand(old);
-        importBotCommand(new);
+        deleteBotCommand(oldMessage);
+        importBotCommand(newMessage);
     }
 });
 
