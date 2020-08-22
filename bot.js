@@ -107,7 +107,7 @@ function importBotCommand(message) {
         }
         var value = [output, message.id];
         botCommands.set(input, value);
-        console.log("trigger " + input " now maps to " + botCommands.get(input)[0]);
+        console.log("trigger " + input + " now maps to " + botCommands.get(input)[0]);
     } catch (error) {
         console.error(error);
     }
