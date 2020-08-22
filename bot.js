@@ -30,7 +30,7 @@ client.on('ready', () => {
     
     //sendMessage(); // send the message once
     
-    const botCommandsChannel = client.channels.cache.get(botCommandsChannelId);
+    const botCommandsChannel = client.guilds.get('727285430499672115').channels.get(botCommandsChannelId);;
     
     channel.messages.fetch({ limit: 100 }).then(messages => {
     console.log(`Received ${messages.size} messages`);
