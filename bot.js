@@ -97,13 +97,7 @@ function importBotCommand(message) {
             return;
         }
         if(botCommands.has(input)) {
-            botCommandsChannel.fetchMessages().then(messages => {
-                console.log(`Received ${messages.size} messages`);
-                //Iterate through the messages here with the variable "messages".
-                
-                botChannel.fetchMessage(botCommands.get(input)[1]).then(m => m.delete());
-                break;
-            });
+            botChannel.fetchMessage(botCommands.get(input)[1]).then(m => m.delete());
         }
         var key = [output, message.id];
         botCommands.set(input, key);
