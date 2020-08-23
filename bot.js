@@ -60,7 +60,7 @@ client.on('message', message => {
     if (messageString.toLowerCase().includes('eat you')) {
         message.reply('kinky');
     }
-    if (messageString.includes('69') && message.author.id != '746818356434305075') {
+    if (messageString.includes('69') && !message.author.bot) {
         message.reply('nice');
     }
     if(messageString.toLowerCase() === 'michigan' || messageString.toLowerCase() === 'michigay') {
