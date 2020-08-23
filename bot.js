@@ -60,17 +60,17 @@ client.on('message', message => {
     if (messageString.toLowerCase().includes('eat you')) {
         message.reply('kinky');
     }
-    if (messageString.includes('69') && message.user.id != '746818356434305075') {
+    if (messageString.includes('69') && message.author.id != '746818356434305075') {
         message.reply('nice');
     }
     if(messageString.toLowerCase() === 'michigan' || messageString.toLowerCase() === 'michigay') {
         message.reply('Boo Michigan!');
     }
     if(messageString.toLowerCase().includes('irwin')) {
-        //console.log(message.user.id);
+        //console.log(message.author.id);
         //console.log(messageString.indexOf('irwin'));
-        if(message.user.id != '746818356434305075' || messageString.indexOf('irwin') > 5) { //ignore if server bot
-            message.guild.members.find(m => m.id === "520732521277685765").send("You've been mentioned!\n"+ message.member.user.tag + " said: " + "\"" + message.content + "\"\nhttp://discordapp.com/channels/" + message.guild.id + "/" + message.channel.id + "/" + message.id);
+        if(message.author.id != '746818356434305075' || messageString.indexOf('irwin') > 5) { //ignore if server bot
+            message.guild.members.find(m => m.id === "520732521277685765").send("You've been mentioned!\n"+ message.author.tag + " said: " + "\"" + message.content + "\"\nhttp://discordapp.com/channels/" + message.guild.id + "/" + message.channel.id + "/" + message.id);
         }
     }
     
