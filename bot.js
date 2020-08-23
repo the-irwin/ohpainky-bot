@@ -45,7 +45,7 @@ client.on('message', message => {
     var messageString = message.content;
     if(messageString.charAt(0) == '=') {
         messageString = messageString.substring(1);
-        console.log("processing bot command: " + messageString);
+        //console.log("processing bot command: " + messageString);
         if(botCommands.has(messageString)) {
             message.channel.send(botCommands.get(messageString)[0]);
         }
@@ -54,9 +54,9 @@ client.on('message', message => {
     if (messageString === 'ping') {
     	message.reply('pong');
   	}
-    console.log(messageString);
+    //console.log(messageString);
     messageString = messageString.replace(/<\/?[^>]+>/g, '') //ignores all mentions
-    console.log(messageString);
+    //console.log(messageString);
     if (messageString.toLowerCase().includes('eat you')) {
         message.reply('kinky');
     }
@@ -67,8 +67,8 @@ client.on('message', message => {
         message.reply('Boo Michigan!');
     }
     if(messageString.toLowerCase().includes('irwin')) {
-        console.log(message.user.id);
-        console.log(messageString.indexOf('irwin'));
+        //console.log(message.user.id);
+        //console.log(messageString.indexOf('irwin'));
         if(message.user.id != '746818356434305075' || messageString.indexOf('irwin') > 5) { //ignore if server bot
             message.guild.members.find(m => m.id === "520732521277685765").send("You've been mentioned!\n"+ message.member.user.tag + " said: " + "\"" + message.content + "\"\nhttp://discordapp.com/channels/" + message.guild.id + "/" + message.channel.id + "/" + message.id);
         }
