@@ -42,7 +42,7 @@ client.on('ready', () => {
 });
 
 client.on('message', message => {
-    var messageString = message.content;
+    var messageString = message.content.toLowerCase();
     if(messageString.charAt(0) == '=') {
         messageString = messageString.substring(1);
         //console.log("processing bot command: " + messageString);
@@ -57,16 +57,16 @@ client.on('message', message => {
     //console.log(messageString);
     messageString = messageString.replace(/<\/?[^>]+>/g, '') //ignores all mentions
     //console.log(messageString);
-    if (messageString.toLowerCase().includes('eat you')) {
+    if (messageString.includes('eat you')) {
         message.reply('kinky');
     }
     if (messageString.includes('69') && !message.author.bot) {
         message.reply('nice');
     }
-    if(messageString.toLowerCase() === 'michigan' || messageString.toLowerCase() === 'michigay') {
+    if(messageString.includes('michigan') || messageString.includes('michigay')) {
         message.reply('Boo Michigan!');
     }
-    if(messageString.toLowerCase().includes('irwin')) {
+    if(messageString.includes('irwin')) {
         //console.log(message.author.id);
         //console.log(messageString.indexOf('irwin'));
         if(message.author.id != '746818356434305075' || messageString.indexOf('irwin') > 5) { //ignore if server bot
