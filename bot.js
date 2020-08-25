@@ -44,10 +44,10 @@ client.on('ready', () => {
 client.on('message', message => {
     var messageString = message.content.toLowerCase();
     if(messageString.charAt(0) == '=') {
-        messageString = messageString.substring(1);
-        //console.log("processing bot command: " + messageString);
-        if(botCommands.has(messageString)) {
-            message.channel.send(botCommands.get(messageString)[0]);
+        try {
+            message.channel.send(botCommands.get(messageString.substring(1))[0]);
+        } catch (error) {
+            console.error(error);
         }
     }
 
