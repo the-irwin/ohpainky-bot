@@ -63,7 +63,7 @@ client.on('message', message => {
     if (messageString.includes('69') && !message.author.bot) {
         message.reply('nice');
     }
-    if(messageString.includes('michigan') || messageString.includes('michigay')) {
+    if(!message.author.bot && (messageString.includes('michigan') || messageString.includes('michigay'))) {
         message.reply('Boo Michigan!');
     }
     if(messageString.includes('irwin')) {
