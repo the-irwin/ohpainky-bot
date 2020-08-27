@@ -4,6 +4,7 @@ const sRoleChannelId = '741760525045727243';
 const roleChannelId = '707375163171143701';
 const botChannelId = '741678960383099000';
 const botCommandsChannelId = '746580589020315738';
+const showcaseChannelId = '696773761239875615';
 var guild;
 var botChannel;
 var sRoleChannel;
@@ -13,6 +14,7 @@ var emojiname;
 var eChannel;
 var rolename;
 var botCommandsChannel;
+var showcaseChannel;
 var botCommands = new Map();
 
 client.on('ready', () => {
@@ -24,6 +26,7 @@ client.on('ready', () => {
     botChannel = guild.channels.get(botChannelId);
     sRoleChannel = guild.channels.get(sRoleChannelId);
     roleChannel = guild.channels.get(roleChannelId);
+    showcaseChannel = guild.channels.get(showcaseChannelId);
     
     emojiname = ["ohioflag", "pennsylvaniaflag", "indianaflag", "kentuckyflag", "questionmark", "grassblock", "ohiopurple", "ohioblue", "ohiored", "ohioorange"];
     eChannel = [sRoleChannel, sRoleChannel, sRoleChannel, sRoleChannel, sRoleChannel, roleChannel, roleChannel, roleChannel, roleChannel, roleChannel];
@@ -65,6 +68,9 @@ client.on('message', message => {
     }
     if(!message.author.bot && (messageString.includes('michigan') || messageString.includes('michigay'))) {
         message.reply('Boo Michigan!');
+    }
+    if(message.channel == showcaseChannel && message.attachments.size > 0)  {
+        message.react('pog');
     }
     if(messageString.includes('irwin')) {
         //console.log(message.author.id);
