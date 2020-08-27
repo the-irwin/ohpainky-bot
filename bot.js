@@ -70,7 +70,7 @@ client.on('message', message => {
         message.reply('Boo Michigan!');
     }
     if(message.channel == showcaseChannel && message.attachments.size > 0)  {
-        message.react(client.emojis.resolveIdentifier('705130675627491540'));
+        message.react(client.emojis.get('705130675627491540'));
     }
     if(messageString.includes('irwin')) {
         //console.log(message.author.id);
