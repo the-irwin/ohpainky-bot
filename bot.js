@@ -77,6 +77,7 @@ client.on('message', message => {
         //console.log(messageString.indexOf('irwin'));
         if(message.author.id != '746818356434305075' || messageString.indexOf('irwin') > 5) { //ignore if server bot
             client.fetchUser('520732521277685765').then((user) => {
+                console.log(message.guild.id);
                 user.send("You've been mentioned!\n"+ message.author.tag + " said: " + "\"" + message.content + "\"\nhttp://discordapp.com/channels/" + message.guild.id + "/" + message.channel.id + "/" + message.id);
             });
         }
