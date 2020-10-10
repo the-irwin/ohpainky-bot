@@ -38,14 +38,15 @@ client.on('ready', () => {
     
     //sendMessage(); // send the message once
     
-    client.channels.fetch(botCommandsChannelId)
-        .then(channel => botCommandsChannel = channel);
-    
-    botCommandsChannel.messages.fetch().then(messages => {
-        console.log(`Received ${messages.size} messages`);
-        //Iterate through the messages here with the variable "messages".
-        messages.forEach(message => importBotCommand(message));
+    client.channels.fetch(botCommandsChannelId).then(botCommandsChannel => {
+        botCommandsChannel.messages.fetch().then(messages => {
+            console.log(`Received ${messages.size} messages`);
+            //Iterate through the messages here with the variable "messages".
+            messages.forEach(message => importBotCommand(message));
+        });
     });
+    
+    
 
 });
 
