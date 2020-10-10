@@ -193,8 +193,10 @@ client.on('raw', packet => {
     if (!['MESSAGE_REACTION_ADD', 'MESSAGE_REACTION_REMOVE'].includes(packet.t)) return;
     console.log("here2");
     // Grab the channel to check the message from
+    console.log("packet.d.channel_id");
     const channel = client.channels.fetch(packet.d.channel_id);
     console.log("here3");
+    console.log(packet.d.message_id));
     // There's no need to emit if the message is cached, because the event will fire anyway for that
     if (channel.messages.has(packet.d.message_id)) return;
     console.log("here4a");
