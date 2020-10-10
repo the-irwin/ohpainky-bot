@@ -23,10 +23,10 @@ client.on('ready', () => {
         timeStamp = Date.now()/1000;
     
     guild = client.guilds.fetch('692591742570201118');
-    botChannel = guild.channels.cache.fetch(botChannelId);
-    sRoleChannel = guild.channels.cache.fetch(sRoleChannelId);
-    roleChannel = guild.channels.cache.fetch(roleChannelId);
-    showcaseChannel = guild.channels.cache.fetch(showcaseChannelId);
+    botChannel = guild.channels.fetch(botChannelId);
+    sRoleChannel = guild.channels.fetch(sRoleChannelId);
+    roleChannel = guild.channels.fetch(roleChannelId);
+    showcaseChannel = guild.channels.fetch(showcaseChannelId);
     
     emojiname = ["ohioflag", "pennsylvaniaflag", "indianaflag", "kentuckyflag", "questionmark", "grassblock", "ohiopurple", "ohioblue", "ohiored", "ohioorange"];
     eChannel = [sRoleChannel, sRoleChannel, sRoleChannel, sRoleChannel, sRoleChannel, roleChannel, roleChannel, roleChannel, roleChannel, roleChannel];
@@ -34,7 +34,7 @@ client.on('ready', () => {
     
     //sendMessage(); // send the message once
     
-    botCommandsChannel = guild.channels.cache.fetch(botCommandsChannelId);
+    botCommandsChannel = guild.channels.fetch(botCommandsChannelId);
     
     botCommandsChannel.fetchMessages().then(messages => {
         console.log(`Received ${messages.size} messages`);
@@ -181,7 +181,7 @@ client.on('raw', packet => {
     // We don't want this to run on unrelated packets
     if (!['MESSAGE_REACTION_ADD', 'MESSAGE_REACTION_REMOVE'].includes(packet.t)) return;
     // Grab the channel to check the message from
-    const channel = client.channels.cache.fetch(packet.d.channel_id);
+    const channel = client.channels.fetch(packet.d.channel_id);
     // There's no need to emit if the message is cached, because the event will fire anyway for that
     if (channel.messages.has(packet.d.message_id)) return;
     // Since we have confirmed the message is not cached, let's fetch it
