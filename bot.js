@@ -24,16 +24,16 @@ client.on('ready', () => {
     
     guild = client.guilds.fetch('692591742570201118');
     client.channels.fetch(botChannelId)
-        .then(channel => botChannel = channel);
+        .then(channel => botChannel = channel)
         .catch (error => console.error(error) );
     client.channels.fetch(sRoleChannelId)
-        .then(channel => sRoleChannel = channel);
+        .then(channel => sRoleChannel = channel)
         .catch (error => console.error(error) );
     client.channels.fetch(roleChannelId)
-        .then(channel => roleChannel = channel);
+        .then(channel => roleChannel = channel)
         .catch (error => console.error(error) );
     client.channels.fetch(showcaseChannelId)
-        .then(channel => showcaseChannel = channel);
+        .then(channel => showcaseChannel = channel)
         .catch (error => console.error(error) );
     
     emojiname = ["ohioflag", "pennsylvaniaflag", "indianaflag", "kentuckyflag", "questionmark", "grassblock", "ohiopurple", "ohioblue", "ohiored", "ohioorange"];
