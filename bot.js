@@ -39,6 +39,7 @@ client.on('ready', () => {
     //sendMessage(); // send the message once
     
     client.channels.fetch(botCommandsChannelId).then(botCommandsChannel => {
+        console.log(botCommandsChannel.name);
         botCommandsChannel.messages.fetch().then(messages => {
             console.log(`Received ${messages.size} messages`);
             //Iterate through the messages here with the variable "messages".
