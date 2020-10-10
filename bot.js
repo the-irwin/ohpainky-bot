@@ -196,7 +196,7 @@ client.on('raw', packet => {
     const channel = client.channels.fetch(packet.d.channel_id);
     console.log("here3");
     // There's no need to emit if the message is cached, because the event will fire anyway for that
-    //if (channel.messages.has(packet.d.message_id)) return;
+    if (channel.messages.has(packet.d.message_id)) return;
     console.log("here4");
     // Since we have confirmed the message is not cached, let's fetch it
     channel.messages.fetch(packet.d.message_id).then(message => {
