@@ -23,10 +23,10 @@ client.on('ready', () => {
         timeStamp = Date.now()/1000;
     
     guild = client.guilds.fetch('692591742570201118');
-    botChannel = guild.channels.fetch(botChannelId);
-    sRoleChannel = guild.channels.fetch(sRoleChannelId);
-    roleChannel = guild.channels.fetch(roleChannelId);
-    showcaseChannel = guild.channels.fetch(showcaseChannelId);
+    botChannel = client.channels.fetch(botChannelId);
+    sRoleChannel = client.channels.fetch(sRoleChannelId);
+    roleChannel = client.channels.fetch(roleChannelId);
+    showcaseChannel = client.channels.fetch(showcaseChannelId);
     
     emojiname = ["ohioflag", "pennsylvaniaflag", "indianaflag", "kentuckyflag", "questionmark", "grassblock", "ohiopurple", "ohioblue", "ohiored", "ohioorange"];
     eChannel = [sRoleChannel, sRoleChannel, sRoleChannel, sRoleChannel, sRoleChannel, roleChannel, roleChannel, roleChannel, roleChannel, roleChannel];
@@ -34,7 +34,7 @@ client.on('ready', () => {
     
     //sendMessage(); // send the message once
     
-    botCommandsChannel = guild.channels.fetch(botCommandsChannelId);
+    botCommandsChannel = client.channels.fetch(botCommandsChannelId);
     
     botCommandsChannel.fetchMessages().then(messages => {
         console.log(`Received ${messages.size} messages`);
