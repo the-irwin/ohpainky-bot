@@ -184,14 +184,19 @@ function sendMessage(){
 //});
 
 client.on('raw', packet => {
+    console.log("here1");
     // We don't want this to run on unrelated packets
     if (!['MESSAGE_REACTION_ADD', 'MESSAGE_REACTION_REMOVE'].includes(packet.t)) return;
+    console.log("here2");
     // Grab the channel to check the message from
     const channel = client.channels.fetch(packet.d.channel_id);
+    console.log("here3");
     // There's no need to emit if the message is cached, because the event will fire anyway for that
     if (channel.messages.has(packet.d.message_id)) return;
+    console.log("here4");
     // Since we have confirmed the message is not cached, let's fetch it
     channel.messages.fetch(packet.d.message_id).then(message => {
+        console.log("here5");
         // Emojis can have identifiers of name:id format, so we have to account for that case as well
         const emoji = packet.d.emoji.id ? `${packet.d.emoji.name}:${packet.d.emoji.id}` : packet.d.emoji.name;
         // This gives us the reaction we need to emit the event properly, in top of the message object
