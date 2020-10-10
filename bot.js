@@ -210,8 +210,8 @@ client.on('raw', packet => {
         if (packet.t === 'MESSAGE_REACTION_REMOVE') {
             client.emit('messageReactionRemove', reaction, client.users.get(packet.d.user_id));
         }
-    });
-});
+    } catch (error) { console.error(error)} );
+} catch (error) { console.error(error)} );
 
 client.on("messageReactionAdd", async (reaction, user) => {
     if (user && !user.bot) {
@@ -222,7 +222,7 @@ client.on("messageReactionAdd", async (reaction, user) => {
                 console.log(rolename[o]);
                 let i = reaction.message.guild.roles.find(reaction => reaction.name == rolename[o]);
                 try {
-                    reaction.message.guild.member(user).addRole(i);
+                    reaction.message.guild.member(user).roles.add(i);
                     console.log("added role");
                     reaction.message.guild.member(user).send("**OHPAINKY:** Gave you the " + rolename[o] + " role.");
                     console.log("sent DM");
@@ -242,7 +242,7 @@ client.on("messageReactionRemove", async (reaction, user) => {
                 console.log(rolename[o]);
                 let i = reaction.message.guild.roles.find(reaction => reaction.name == rolename[o]);
                 try {
-                    reaction.message.guild.member(user).removeRole(i);
+                    reaction.message.guild.member(user).roles.remove(i);
                     console.log("removed role");
                     reaction.message.guild.member(user).send("**OHPAINKY:** Removed your " + rolename[o] + " role.");
                     console.log("sent DM");
