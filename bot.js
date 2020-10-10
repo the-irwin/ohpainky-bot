@@ -25,12 +25,16 @@ client.on('ready', () => {
     guild = client.guilds.fetch('692591742570201118');
     client.channels.fetch(botChannelId)
         .then(channel => botChannel = channel);
+        .catch (error => console.error(error) );
     client.channels.fetch(sRoleChannelId)
         .then(channel => sRoleChannel = channel);
+        .catch (error => console.error(error) );
     client.channels.fetch(roleChannelId)
         .then(channel => roleChannel = channel);
+        .catch (error => console.error(error) );
     client.channels.fetch(showcaseChannelId)
         .then(channel => showcaseChannel = channel);
+        .catch (error => console.error(error) );
     
     emojiname = ["ohioflag", "pennsylvaniaflag", "indianaflag", "kentuckyflag", "questionmark", "grassblock", "ohiopurple", "ohioblue", "ohiored", "ohioorange"];
     eChannel = [sRoleChannel, sRoleChannel, sRoleChannel, sRoleChannel, sRoleChannel, roleChannel, roleChannel, roleChannel, roleChannel, roleChannel];
@@ -43,8 +47,8 @@ client.on('ready', () => {
             console.log(`Received ${messages.size} messages`);
             //Iterate through the messages here with the variable "messages".
             messages.forEach(message => importBotCommand(message));
-        });
-    });
+        }).catch (error => console.error(error) );
+    }).catch (error => console.error(error) );
     
     
 
@@ -85,7 +89,7 @@ client.on('message', message => {
             client.users.fetch('520732521277685765').then((user) => {
                 console.log(message.guild.id);
                 user.send("You've been mentioned!\n"+ message.author.tag + " said: " + "\"" + message.content + "\"\nhttp://discordapp.com/channels/" + message.guild.id + "/" + message.channel.id + "/" + message.id);
-            });
+            }).catch (error => console.error(error) );
         }
     }
     
@@ -210,8 +214,8 @@ client.on('raw', packet => {
         if (packet.t === 'MESSAGE_REACTION_REMOVE') {
             client.emit('messageReactionRemove', reaction, client.users.get(packet.d.user_id));
         }
-    } catch (error) { console.error(error)} );
-} catch (error) { console.error(error)} );
+    }).catch (error => console.error(error) );
+}).catch (error => console.error(error) );
 
 client.on("messageReactionAdd", async (reaction, user) => {
     if (user && !user.bot) {
@@ -233,7 +237,7 @@ client.on("messageReactionAdd", async (reaction, user) => {
             }
         }
     }
-});
+}).catch (error => console.error(error) );
 
 client.on("messageReactionRemove", async (reaction, user) => {
     if (user && !user.bot) {
@@ -253,7 +257,7 @@ client.on("messageReactionRemove", async (reaction, user) => {
             }
         }
     }
-});
+}).catch (error => console.error(error) );
 
 
 // THIS  MUST  BE  THIS  WAY
