@@ -16,6 +16,6 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+link"
+    "url": "git+https://github.com/the-irwin/ohpainky-bot"
   }
 }
