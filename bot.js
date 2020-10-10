@@ -126,15 +126,15 @@ function importBotCommand(message) {
             console.log("incorrect array length");
             return;
         }
-        if(botCommands.has(input)) {
-            botCommandsChannel.messages.fetch(botCommands.get(input)[1]).then(m => {
-                m.delete();
-                console.log("deleting message with id: " + botCommands.get(input)[1] + " and content " + botCommands.get(input)[0])
-            }).catch (error => {
-                console.log("error while deleting message with id: " + botCommands.get(input)[1] + " and content " + m.content);
-                console.error(error);
-            });
-        }
+        //if(botCommands.has(input)) {
+        //    botCommandsChannel.messages.fetch(botCommands.get(input)[1]).then(m => {
+        //        m.delete();
+        //        console.log("deleting message with id: " + botCommands.get(input)[1] + " and content " + botCommands.get(input)[0])
+        //    }).catch (error => {
+        //        console.log("error while deleting message with id: " + botCommands.get(input)[1] + " and content " + m.content);
+        //        console.error(error);
+        //    });
+        //}
         var value = [output, message.id];
         botCommands.set(input, value);
         console.log("trigger " + input + " now maps to " + botCommands.get(input)[0]);
