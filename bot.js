@@ -39,7 +39,6 @@ client.on('ready', () => {
     //sendMessage(); // send the message once
     
     client.channels.fetch(botCommandsChannelId).then(botCommandsChannel => {
-        console.log(botCommandsChannel.name);
         botCommandsChannel.messages.fetch().then(messages => {
             console.log(`Received ${messages.size} messages`);
             //Iterate through the messages here with the variable "messages".
@@ -83,7 +82,7 @@ client.on('message', message => {
         //console.log(message.author.id);
         //console.log(messageString.indexOf('irwin'));
         if(message.author.id != '746818356434305075' || messageString.indexOf('irwin') > 5) { //ignore if server bot
-            client.fetchUser('520732521277685765').then((user) => {
+            client.users.fetch('520732521277685765').then((user) => {
                 console.log(message.guild.id);
                 user.send("You've been mentioned!\n"+ message.author.tag + " said: " + "\"" + message.content + "\"\nhttp://discordapp.com/channels/" + message.guild.id + "/" + message.channel.id + "/" + message.id);
             });
