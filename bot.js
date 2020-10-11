@@ -226,6 +226,7 @@ client.on("messageReactionAdd", async (reaction, user) => {
                     .then(roles => roles.find(reaction => reaction.name == rolename[o]))
                     .catch(console.error);
                 try {
+                    console.log(i.id);
                     reaction.message.guild.member(user).roles.add(i);
                     console.log("added role");
                     reaction.message.guild.member(user).send("**OHPAINKY:** Gave you the " + rolename[o] + " role.");
@@ -250,6 +251,7 @@ client.on("messageReactionRemove", async (reaction, user) => {
                     .then(roles => roles.find(reaction => reaction.name == rolename[o]))
                     .catch(console.error);
                 try {
+                    console.log(i.id);
                     reaction.message.guild.member(user).roles.remove(i);
                     console.log("removed role");
                     reaction.message.guild.member(user).send("**OHPAINKY:** Removed your " + rolename[o] + " role.");
