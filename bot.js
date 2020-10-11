@@ -27,10 +27,7 @@ client.on('ready', () => {
         .then(channel => botChannel = channel)
         .catch (error => console.error(error) );
     client.channels.fetch(sRoleChannelId)
-        .then(channel => {
-            sRoleChannel = channel;
-            channel.messages.fetch(, true);
-        })
+        .then(channel => sRoleChannel = channel)
         .catch (error => console.error(error) );
     client.channels.fetch(roleChannelId)
         .then(channel => roleChannel = channel)
