@@ -223,7 +223,7 @@ client.on("messageReactionAdd", async (reaction, user) => {
             if (reaction.emoji.name == emojiname[o] && reaction.message.channel.id == eChannel[o]) {
                 console.log(rolename[o]);
                 let i = reaction.message.guild.roles.fetch()
-                    .then(find(reaction => reaction.name == rolename[o]))
+                    .then(roles => roles.find(reaction => reaction.name == rolename[o]))
                     .catch(console.error);
                 try {
                     reaction.message.guild.member(user).roles.add(i);
