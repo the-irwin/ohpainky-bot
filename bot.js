@@ -22,8 +22,9 @@ client.on('ready', () => {
      // in leftToEight() milliseconds run this:
         timeStamp = Date.now()/1000;
     
-    guild = await client.guilds.fetch('692591742570201118');
-    botChannel = await client.channels.fetch(botChannelId);
+    guild = client.guilds.fetch('692591742570201118');
+    botChannel = client.channels.fetch(botChannelId);
+    console.log(botChannel.id);
     sRoleChannel = await client.channels.fetch(sRoleChannelId);
     roleChannel = await client.channels.fetch(roleChannelId);
     showcaseChannel = await client.channels.fetch(showcaseChannelId);
