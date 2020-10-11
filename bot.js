@@ -221,8 +221,8 @@ client.on('raw', packet => {
 */
 client.on("messageReactionAdd", async (reaction, user) => {
     if (reaction.message.partial) await reaction.message.fetch();
-    console.log("here4b");
     if (user && !user.bot) {
+        console.log(reaction.emoji.name);
     //if (user && !user.bot && reaction.message.channel.guild)
         //console.log(reaction.message.channel.id);
         for (let o in emojiname) {
@@ -244,8 +244,8 @@ client.on("messageReactionAdd", async (reaction, user) => {
 
 client.on("messageReactionRemove", async (reaction, user) => {
     if (reaction.message.partial) await reaction.message.fetch();
-    console.log("here4c");
     if (user && !user.bot) {
+        console.log(reaction.emoji.name);
         for (let o in emojiname) {
             if (reaction.emoji.name == emojiname[o] && reaction.message.channel == eChannel[o]) {
                 console.log(rolename[o]);
