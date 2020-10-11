@@ -22,15 +22,15 @@ client.on('ready', () => {
      // in leftToEight() milliseconds run this:
         timeStamp = Date.now()/1000;
     
-    guild = client.guilds.fetch('692591742570201118');
-    botChannel = client.channels.fetch(botChannelId).then( channel => botChannel = channel);
-    console.log(botChannel.id);
-    sRoleChannel = client.channels.fetch(sRoleChannelId);
-    roleChannel = client.channels.fetch(roleChannelId);
-    showcaseChannel = client.channels.fetch(showcaseChannelId);
+    //guild = client.guilds.fetch('692591742570201118');
+    //botChannel = client.channels.fetch(botChannelId).then( channel => botChannel = channel);
+    //console.log(botChannel.id);
+    //sRoleChannel = client.channels.fetch(sRoleChannelId);
+    //roleChannel = client.channels.fetch(roleChannelId);
+    //showcaseChannel = client.channels.fetch(showcaseChannelId);
     
     emojiname = ["ohioflag", "pennsylvaniaflag", "indianaflag", "kentuckyflag", "questionmark", "grassblock", "ohiopurple", "ohioblue", "ohiored", "ohioorange"];
-    eChannel = [sRoleChannel, sRoleChannel, sRoleChannel, sRoleChannel, sRoleChannel, roleChannel, roleChannel, roleChannel, roleChannel, roleChannel];
+    eChannel = [sRoleChannelId, sRoleChannelId, sRoleChannelId, sRoleChannelId, sRoleChannelId, roleChannelId, roleChannelId, roleChannelId, roleChannelId, roleChannelId];
     rolename = ["Ohio", "Pennsylvania", "Indiana", "Kentucky", "Not in OHPAINKY", "build events", "Twitch", "Instagram", "Youtube", "events"];
     
     //sendMessage(); // send the message once
@@ -220,7 +220,7 @@ client.on("messageReactionAdd", async (reaction, user) => {
     //if (user && !user.bot && reaction.message.channel.guild)
         //console.log(reaction.message.channel.id);
         for (let o in emojiname) {
-            if (reaction.emoji.name == emojiname[o] && reaction.message.channel == eChannel[o]) {
+            if (reaction.emoji.name == emojiname[o] && reaction.message.channel.id == eChannel[o]) {
                 console.log(rolename[o]);
                 let i = reaction.message.guild.roles.find(reaction => reaction.name == rolename[o]);
                 try {
@@ -242,7 +242,7 @@ client.on("messageReactionRemove", async (reaction, user) => {
         console.log(reaction.emoji.name);
         console.log(reaction.message.channel.name);
         for (let o in emojiname) {
-            if (reaction.emoji.name == emojiname[o] && reaction.message.channel == eChannel[o]) {
+            if (reaction.emoji.name == emojiname[o] && reaction.message.channel.id == eChannel[o]) {
                 console.log(rolename[o]);
                 let i = reaction.message.guild.roles.find(reaction => reaction.name == rolename[o]);
                 try {
