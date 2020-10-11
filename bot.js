@@ -22,13 +22,6 @@ client.on('ready', () => {
      // in leftToEight() milliseconds run this:
         timeStamp = Date.now()/1000;
     
-    //guild = client.guilds.fetch('692591742570201118');
-    //botChannel = client.channels.fetch(botChannelId).then( channel => botChannel = channel);
-    //console.log(botChannel.id);
-    //sRoleChannel = client.channels.fetch(sRoleChannelId);
-    //roleChannel = client.channels.fetch(roleChannelId);
-    //showcaseChannel = client.channels.fetch(showcaseChannelId);
-    
     emojiname = ["ohioflag", "pennsylvaniaflag", "indianaflag", "kentuckyflag", "questionmark", "grassblock", "ohiopurple", "ohioblue", "ohiored", "ohioorange"];
     eChannel = [sRoleChannelId, sRoleChannelId, sRoleChannelId, sRoleChannelId, sRoleChannelId, roleChannelId, roleChannelId, roleChannelId, roleChannelId, roleChannelId];
     rolename = ["Ohio", "Pennsylvania", "Indiana", "Kentucky", "Not in OHPAINKY", "build events", "Twitch", "Instagram", "Youtube", "events"];
@@ -39,12 +32,9 @@ client.on('ready', () => {
         botCommandsChannel.messages.fetch().then(messages => {
             console.log(`Received ${messages.size} messages`);
             //Iterate through the messages here with the variable "messages".
-            messages.forEach(message => importBotCommand(message));
+            messages.forEach(message => importBotCommand(message, true));
         }).catch (error => console.error(error) );
     }).catch (error => console.error(error) );
-    
-    
-
 });
 
 client.on('message', message => {
@@ -66,7 +56,7 @@ client.on('message', message => {
     if (messageString.includes('eat you')) {
         message.reply('kinky');
     }
-    if (messageString.includes('69') && !message.author.bot) {
+    if (messageString.includes('69') && !messageString.includes('.com' || 'http'' || '.net' || '.edu') && !message.author.bot) { // Disregard messages that contain links or are sent by bots
         message.reply('nice');
     }
     if(!message.author.bot && (messageString.includes('michigan') || messageString.includes('michigay'))) {
@@ -87,7 +77,7 @@ client.on('message', message => {
     }
     
     if(message.channel == botCommandsChannel) {
-        importBotCommand(message);
+        importBotCommand(message, false);
     }
     
 });
@@ -103,11 +93,11 @@ client.on('messageUpdate', (oldMessage, newMessage) => {
     
     if(newMessage.channel == botCommandsChannel) {
         deleteBotCommand(oldMessage);
-        importBotCommand(newMessage);
+        importBotCommand(newMessage, false);
     }
 });
 
-function importBotCommand(message) {
+function importBotCommand(message, isImport) {
     try {
         console.log(message.content);
         var temp = message.content.split(" ");
@@ -123,15 +113,15 @@ function importBotCommand(message) {
             console.log("incorrect array length");
             return;
         }
-        //if(botCommands.has(input)) {
-        //    botCommandsChannel.messages.fetch(botCommands.get(input)[1]).then(m => {
-        //        m.delete();
-        //        console.log("deleting message with id: " + botCommands.get(input)[1] + " and content " + botCommands.get(input)[0])
-        //    }).catch (error => {
-        //        console.log("error while deleting message with id: " + botCommands.get(input)[1] + " and content " + m.content);
-        //        console.error(error);
-        //    });
-        //}
+        if(botCommands.has(input) && !isImport) {
+            botCommandsChannel.messages.fetch(botCommands.get(input)[1]).then(m => {
+                m.delete();
+                console.log("deleting message with id: " + botCommands.get(input)[1] + " and content " + botCommands.get(input)[0])
+            }).catch (error => {
+                console.log("error while deleting message with id: " + botCommands.get(input)[1] + " and content " + m.content);
+                console.error(error);
+            });
+        }
         var value = [output, message.id];
         botCommands.set(input, value);
         console.log("trigger " + input + " now maps to " + botCommands.get(input)[0]);
@@ -179,39 +169,7 @@ function sendMessage(){
 //        }
 //    }
 //});
-/*
-client.on('raw', packet => {
-    console.log("here1");
-    // We don't want this to run on unrelated packets
-    if (!['MESSAGE_REACTION_ADD', 'MESSAGE_REACTION_REMOVE'].includes(packet.t)) return;
-    console.log("here2");
-    // Grab the channel to check the message from
-    console.log(packet.d.channel_id);
-    const channel = client.channels.fetch(packet.d.channel_id);
-    console.log("here3");
-    console.log(packet.d.message_id);
-    // There's no need to emit if the message is cached, because the event will fire anyway for that
-    if (channel.messages.has(packet.d.message_id)) return;
-    console.log("here4a");
-    // Since we have confirmed the message is not cached, let's fetch it
-    channel.messages.fetch(packet.d.message_id).then(message => {
-        console.log("here5");
-        // Emojis can have identifiers of name:id format, so we have to account for that case as well
-        const emoji = packet.d.emoji.id ? `${packet.d.emoji.name}:${packet.d.emoji.id}` : packet.d.emoji.name;
-        // This gives us the reaction we need to emit the event properly, in top of the message object
-        const reaction = message.reactions.get(emoji);
-        // Adds the currently reacting user to the reaction's users collection.
-        if (reaction) reaction.users.set(packet.d.user_id, client.users.get(packet.d.user_id));
-        // Check which type of event it is before emitting
-        if (packet.t === 'MESSAGE_REACTION_ADD') {
-            client.emit('messageReactionAdd', reaction, client.users.get(packet.d.user_id));
-        }
-        if (packet.t === 'MESSAGE_REACTION_REMOVE') {
-            client.emit('messageReactionRemove', reaction, client.users.get(packet.d.user_id));
-        }
-    }).catch (error => console.error(error) );
-});
-*/
+
 client.on("messageReactionAdd", async (reaction, user) => {
     if (reaction.message.partial) await reaction.message.fetch();
     if (user && !user.bot) {
