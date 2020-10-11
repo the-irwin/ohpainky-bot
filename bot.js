@@ -1,5 +1,5 @@
 const Discord = require('discord.js');
-const client = new Discord.Client();
+const client = new Discord.Client({partials: ['MESSAGE', 'CHANNEL', 'REACTION'] });
 const sRoleChannelId = '741760525045727243';
 const roleChannelId = '707375163171143701';
 const botChannelId = '741678960383099000';
@@ -27,7 +27,10 @@ client.on('ready', () => {
         .then(channel => botChannel = channel)
         .catch (error => console.error(error) );
     client.channels.fetch(sRoleChannelId)
-        .then(channel => sRoleChannel = channel)
+        .then(channel => {
+            sRoleChannel = channel;
+            channel.messages.fetch(, true);
+        })
         .catch (error => console.error(error) );
     client.channels.fetch(roleChannelId)
         .then(channel => roleChannel = channel)
@@ -186,14 +189,14 @@ function sendMessage(){
 //        }
 //    }
 //});
-
+/*
 client.on('raw', packet => {
     console.log("here1");
     // We don't want this to run on unrelated packets
     if (!['MESSAGE_REACTION_ADD', 'MESSAGE_REACTION_REMOVE'].includes(packet.t)) return;
     console.log("here2");
     // Grab the channel to check the message from
-    console.log("packet.d.channel_id");
+    console.log(packet.d.channel_id);
     const channel = client.channels.fetch(packet.d.channel_id);
     console.log("here3");
     console.log(packet.d.message_id);
@@ -218,8 +221,9 @@ client.on('raw', packet => {
         }
     }).catch (error => console.error(error) );
 });
-
+*/
 client.on("messageReactionAdd", async (reaction, user) => {
+    if (reaction.message.partial) await reaction.message.fetch();
     console.log("here4b");
     if (user && !user.bot) {
     //if (user && !user.bot && reaction.message.channel.guild)
@@ -242,6 +246,7 @@ client.on("messageReactionAdd", async (reaction, user) => {
 });
 
 client.on("messageReactionRemove", async (reaction, user) => {
+    if (reaction.message.partial) await reaction.message.fetch();
     console.log("here4c");
     if (user && !user.bot) {
         for (let o in emojiname) {
