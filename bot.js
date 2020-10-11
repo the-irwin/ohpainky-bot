@@ -22,19 +22,11 @@ client.on('ready', () => {
      // in leftToEight() milliseconds run this:
         timeStamp = Date.now()/1000;
     
-    guild = client.guilds.fetch('692591742570201118');
-    client.channels.fetch(botChannelId)
-        .then(channel => botChannel = channel)
-        .catch (error => console.error(error) );
-    client.channels.fetch(sRoleChannelId)
-        .then(channel => sRoleChannel = channel)
-        .catch (error => console.error(error) );
-    client.channels.fetch(roleChannelId)
-        .then(channel => roleChannel = channel)
-        .catch (error => console.error(error) );
-    client.channels.fetch(showcaseChannelId)
-        .then(channel => showcaseChannel = channel)
-        .catch (error => console.error(error) );
+    guild = await client.guilds.fetch('692591742570201118');
+    botChannel = await client.channels.fetch(botChannelId);
+    sRoleChannel = await client.channels.fetch(sRoleChannelId);
+    roleChannel = await client.channels.fetch(roleChannelId);
+    showcaseChannel = await client.channels.fetch(showcaseChannelId);
     
     emojiname = ["ohioflag", "pennsylvaniaflag", "indianaflag", "kentuckyflag", "questionmark", "grassblock", "ohiopurple", "ohioblue", "ohiored", "ohioorange"];
     eChannel = [sRoleChannel, sRoleChannel, sRoleChannel, sRoleChannel, sRoleChannel, roleChannel, roleChannel, roleChannel, roleChannel, roleChannel];
