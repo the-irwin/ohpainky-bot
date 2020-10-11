@@ -57,7 +57,7 @@ client.on('message', message => {
     if(!message.author.bot && (messageString.includes('michigan') || messageString.includes('michigay'))) {
         message.reply('Boo Michigan!');
     }
-    if(message.channel.Id == showcaseChannel.Id && message.attachments.size > 0)  {
+    if(message.channel.Id == showcaseChannelId && message.attachments.size > 0)  {
         message.react(client.emojis.get('705130675627491540'));
     }
     if(messageString.includes('irwin')) {
