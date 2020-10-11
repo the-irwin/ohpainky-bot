@@ -25,9 +25,9 @@ client.on('ready', () => {
     guild = client.guilds.fetch('692591742570201118');
     botChannel = client.channels.fetch(botChannelId);
     console.log(botChannel.id);
-    sRoleChannel = await client.channels.fetch(sRoleChannelId);
-    roleChannel = await client.channels.fetch(roleChannelId);
-    showcaseChannel = await client.channels.fetch(showcaseChannelId);
+    sRoleChannel = client.channels.fetch(sRoleChannelId);
+    roleChannel = client.channels.fetch(roleChannelId);
+    showcaseChannel = client.channels.fetch(showcaseChannelId);
     
     emojiname = ["ohioflag", "pennsylvaniaflag", "indianaflag", "kentuckyflag", "questionmark", "grassblock", "ohiopurple", "ohioblue", "ohiored", "ohioorange"];
     eChannel = [sRoleChannel, sRoleChannel, sRoleChannel, sRoleChannel, sRoleChannel, roleChannel, roleChannel, roleChannel, roleChannel, roleChannel];
