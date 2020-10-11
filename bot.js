@@ -6,15 +6,10 @@ const botChannelId = '741678960383099000';
 const botCommandsChannelId = '746580589020315738';
 const showcaseChannelId = '696773761239875615';
 var guild;
-var botChannel;
-var sRoleChannel;
-var roleChannel;
 var timeStamp;
 var emojiname;
 var eChannel;
 var rolename;
-var botCommandsChannel;
-var showcaseChannel;
 var botCommands = new Map();
 
 client.on('ready', () => {
@@ -62,7 +57,7 @@ client.on('message', message => {
     if(!message.author.bot && (messageString.includes('michigan') || messageString.includes('michigay'))) {
         message.reply('Boo Michigan!');
     }
-    if(message.channel == showcaseChannel && message.attachments.size > 0)  {
+    if(message.channel.Id == showcaseChannel.Id && message.attachments.size > 0)  {
         message.react(client.emojis.get('705130675627491540'));
     }
     if(messageString.includes('irwin')) {
@@ -70,13 +65,13 @@ client.on('message', message => {
         //console.log(messageString.indexOf('irwin'));
         if(message.author.id != '746818356434305075' || messageString.indexOf('irwin') > 5) { //ignore if server bot
             client.users.fetch('520732521277685765').then((user) => {
-                console.log(message.guild.id);
+                //console.log(message.guild.id);
                 user.send("You've been mentioned!\n"+ message.author.tag + " said: " + "\"" + message.content + "\"\nhttp://discordapp.com/channels/" + message.guild.id + "/" + message.channel.id + "/" + message.id);
             }).catch (error => console.error(error) );
         }
     }
     
-    if(message.channel == botCommandsChannel) {
+    if(message.channel.Id == botCommandsChannelId) {
         importBotCommand(message, false);
     }
     
@@ -84,14 +79,14 @@ client.on('message', message => {
 
 client.on('messageDelete', message => {
     
-    if(message.channel == botCommandsChannel) {
+    if(message.channel.Id == botCommandsChannelId) {
         deleteBotCommand(message);
     }
 });
 
 client.on('messageUpdate', (oldMessage, newMessage) => {
     
-    if(newMessage.channel == botCommandsChannel) {
+    if(newMessage.channel.Id == botCommandsChannelId) {
         deleteBotCommand(oldMessage);
         importBotCommand(newMessage, false);
     }
@@ -113,6 +108,7 @@ function importBotCommand(message, isImport) {
             console.log("incorrect array length");
             return;
         }
+        /*
         if(botCommands.has(input) && !isImport) {
             botCommandsChannel.messages.fetch(botCommands.get(input)[1]).then(m => {
                 m.delete();
@@ -122,6 +118,7 @@ function importBotCommand(message, isImport) {
                 console.error(error);
             });
         }
+        */
         var value = [output, message.id];
         botCommands.set(input, value);
         console.log("trigger " + input + " now maps to " + botCommands.get(input)[0]);
@@ -148,8 +145,8 @@ function deleteBotCommand(message) {
 }
 
 function sendMessage(){
-    roleChannel.send("React with <:grassblock:743579727809478706> to get build event announcements");
-    console.log("sent");
+    //roleChannel.send("React with <:grassblock:743579727809478706> to get build event announcements");
+    //console.log("sent");
     //roleChannel.send("-------------------------------------");
     //roleChannel.send("Ohio");
     //roleChannel.send("Pennsylvania");
@@ -173,8 +170,8 @@ function sendMessage(){
 client.on("messageReactionAdd", async (reaction, user) => {
     if (reaction.message.partial) await reaction.message.fetch();
     if (user && !user.bot) {
-        console.log(reaction.emoji.name);
-        console.log(reaction.message.channel.name);
+        //console.log(reaction.emoji.name);
+        //console.log(reaction.message.channel.name);
     //if (user && !user.bot && reaction.message.channel.guild)
         //console.log(reaction.message.channel.id);
         for (let o in emojiname) {
@@ -196,8 +193,8 @@ client.on("messageReactionAdd", async (reaction, user) => {
 client.on("messageReactionRemove", async (reaction, user) => {
     if (reaction.message.partial) await reaction.message.fetch();
     if (user && !user.bot) {
-        console.log(reaction.emoji.name);
-        console.log(reaction.message.channel.name);
+        //console.log(reaction.emoji.name);
+        //console.log(reaction.message.channel.name);
         for (let o in emojiname) {
             if (reaction.emoji.name == emojiname[o] && reaction.message.channel.id == eChannel[o]) {
                 console.log(rolename[o]);
