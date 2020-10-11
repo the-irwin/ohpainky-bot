@@ -23,7 +23,7 @@ client.on('ready', () => {
         timeStamp = Date.now()/1000;
     
     guild = client.guilds.fetch('692591742570201118');
-    botChannel = client.channels.fetch(botChannelId);
+    botChannel = client.channels.fetch(botChannelId).then( channel => botChannel = channel);
     console.log(botChannel.id);
     sRoleChannel = client.channels.fetch(sRoleChannelId);
     roleChannel = client.channels.fetch(roleChannelId);
