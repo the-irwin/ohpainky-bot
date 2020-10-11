@@ -51,7 +51,7 @@ client.on('message', message => {
     if (messageString.includes('eat you')) {
         message.reply('kinky');
     }
-    if (messageString.includes('69') && !messageString.includes('.com' || 'http'' || '.net' || '.edu') && !message.author.bot) { // Disregard messages that contain links or are sent by bots
+    if (messageString.includes('69') && !messageString.includes('www.' || 'http' || '.com' || '.net') && !message.author.bot) { // Disregard messages that contain links or are sent by bots
         message.reply('nice');
     }
     if(!message.author.bot && (messageString.includes('michigan') || messageString.includes('michigay'))) {
