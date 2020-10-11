@@ -223,7 +223,7 @@ client.on("messageReactionAdd", async (reaction, user) => {
     if (reaction.message.partial) await reaction.message.fetch();
     if (user && !user.bot) {
         console.log(reaction.emoji.name);
-        console.log(reaction.message.channel);
+        console.log(reaction.message.channel.name);
     //if (user && !user.bot && reaction.message.channel.guild)
         //console.log(reaction.message.channel.id);
         for (let o in emojiname) {
@@ -247,7 +247,7 @@ client.on("messageReactionRemove", async (reaction, user) => {
     if (reaction.message.partial) await reaction.message.fetch();
     if (user && !user.bot) {
         console.log(reaction.emoji.name);
-        console.log(reaction.message.channel);
+        console.log(reaction.message.channel.name);
         for (let o in emojiname) {
             if (reaction.emoji.name == emojiname[o] && reaction.message.channel == eChannel[o]) {
                 console.log(rolename[o]);
