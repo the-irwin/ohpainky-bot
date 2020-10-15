@@ -14,8 +14,7 @@ var botCommands = new Map();
 
 client.on('ready', () => {
     console.log('I am ready!');
-     // in leftToEight() milliseconds run this:
-        timeStamp = Date.now()/1000;
+    timeStamp = Date.now()/1000;
     
     emojiname = ["ohioflag", "pennsylvaniaflag", "indianaflag", "kentuckyflag", "questionmark", "grassblock", "ohiopurple", "ohioblue", "ohiored", "ohioorange"];
     eChannel = [sRoleChannelId, sRoleChannelId, sRoleChannelId, sRoleChannelId, sRoleChannelId, roleChannelId, roleChannelId, roleChannelId, roleChannelId, roleChannelId];
@@ -23,7 +22,7 @@ client.on('ready', () => {
     
     //sendMessage(); // send the message once
     
-    client.channels.fetch(botCommandsChannelId).then(botCommandsChannel => {
+    client.channels.fetch(botCommandsChannelId).then(botCommandsChannel => {    //import bot commands from bot commands channel
         botCommandsChannel.messages.fetch().then(messages => {
             console.log(`Received ${messages.size} messages`);
             //Iterate through the messages here with the variable "messages".
@@ -34,7 +33,7 @@ client.on('ready', () => {
 
 client.on('message', message => {
     var messageString = message.content.toLowerCase();
-    if(messageString.charAt(0) == '=') {
+    if(messageString.charAt(0) == '=' && message.channel.Id != botCommandsChannelId) {    //check if the string is a bot command and is not in the bot commands channel (would cause infinite loop)
         try {
             message.channel.send(botCommands.get(messageString.substring(1))[0]);
         } catch (error) {
@@ -45,36 +44,21 @@ client.on('message', message => {
     if (messageString === 'ping') {
     	message.reply('pong');
   	}
-    //console.log(messageString);
+
     messageString = messageString.replace(/<\/?[^>]+>/g, '') //ignores all mentions
-    //console.log(messageString);
-    if (messageString.includes('eat you')) {
-        message.reply('kinky');
-    }
+
     if (messageString.includes('69') && !messageString.includes('www.' || 'http' || '.com' || '.net') && !message.author.bot) { // Disregard messages that contain links or are sent by bots
         message.reply('nice');
     }
-    if(!message.author.bot && (messageString.includes('michigan') || messageString.includes('michigay'))) {
+    if(!message.author.bot && (messageString.includes('michigan')) ) {
         message.reply('Boo Michigan!');
     }
-    if(message.channel.Id == showcaseChannelId && message.attachments.size > 0)  {
+    if(message.channel.Id == showcaseChannelId && message.attachments.size > 0)  {    //react with pog on every image posted in the showcase channel
         message.react(client.emojis.get('705130675627491540'));
     }
-    if(messageString.includes('irwin')) {
-        //console.log(message.author.id);
-        //console.log(messageString.indexOf('irwin'));
-        if(message.author.id != '746818356434305075' || messageString.indexOf('irwin') > 5) { //ignore if server bot
-            client.users.fetch('520732521277685765').then((user) => {
-                //console.log(message.guild.id);
-                user.send("You've been mentioned!\n"+ message.author.tag + " said: " + "\"" + message.content + "\"\nhttp://discordapp.com/channels/" + message.guild.id + "/" + message.channel.id + "/" + message.id);
-            }).catch (error => console.error(error) );
-        }
-    }
-    
-    if(message.channel.Id == botCommandsChannelId) {
+    if(message.channel.Id == botCommandsChannelId) {    //import new bot command
         importBotCommand(message, false);
     }
-    
 });
 
 client.on('messageDelete', message => {
@@ -144,7 +128,7 @@ function deleteBotCommand(message) {
     }
 }
 
-function sendMessage(){
+function sendMessage(){ //Used for sending a predefined message
     //roleChannel.send("React with <:grassblock:743579727809478706> to get build event announcements");
     //console.log("sent");
     //roleChannel.send("-------------------------------------");
@@ -157,17 +141,7 @@ function sendMessage(){
     //roleChannel.send(" ");
 }
 
-//client.on("message", e => {
-//    if (e.content.startsWith(prefix + "reaction")) {
-//        if (!e.channel.guild) return;
-//        for (let o in emojiname) {
-//            var n = [e.guild.emojis.find(e => e.name == emojiname[o])];
-//            for (let o in n) e.react(n[o])
-//        }
-//    }
-//});
-
-client.on("messageReactionAdd", async (reaction, user) => {
+client.on("messageReactionAdd", async (reaction, user) => {    //add reaction roles
     if (reaction.message.partial) await reaction.message.fetch();
     if (user && !user.bot) {
         //console.log(reaction.emoji.name);
@@ -190,7 +164,7 @@ client.on("messageReactionAdd", async (reaction, user) => {
     }
 });
 
-client.on("messageReactionRemove", async (reaction, user) => {
+client.on("messageReactionRemove", async (reaction, user) => {    //remove reaction roles
     if (reaction.message.partial) await reaction.message.fetch();
     if (user && !user.bot) {
         //console.log(reaction.emoji.name);
@@ -212,5 +186,5 @@ client.on("messageReactionRemove", async (reaction, user) => {
 });
 
 
-// THIS  MUST  BE  THIS  WAY
+// DO NOT CHANGE
 client.login(process.env.BOT_TOKEN);//where BOT_TOKEN is the token of our bot 
