@@ -72,7 +72,7 @@ client.on('messageDelete', message => {
 
 client.on('guildMemberAdd', member => {
     client.channels.fetch(joinNotifChannelId).then(joinNotifChannel => {
-        joinNotifChannel.send("Yo, " + <@&pongRoleId> + ", " + <@${member.id}> + " just joined!")
+        joinNotifChannel.send("Yo, <@&${pongRoleId}>, <@${member.id}> just joined!");
     });
 });
 
