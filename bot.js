@@ -5,6 +5,7 @@ const roleChannelId = '707375163171143701';
 const botChannelId = '741678960383099000';
 const botCommandsChannelId = '746580589020315738';
 const showcaseChannelId = '696773761239875615';
+const joinNotifChannelId = '696226678644408362';
 var guild;
 var timeStamp;
 var emojiname;
@@ -66,6 +67,12 @@ client.on('messageDelete', message => {
     if(message.channel.Id == botCommandsChannelId) {
         deleteBotCommand(message);
     }
+});
+
+client.on('guildMemberAdd', member => {
+    client.channels.fetch(joinNotifChannelId).then(joinNotifChannel => {
+        joinNotifChannel.send("Yo, @pong, ${member} just joined!")
+    });
 });
 
 client.on('messageUpdate', (oldMessage, newMessage) => {
