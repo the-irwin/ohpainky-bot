@@ -71,7 +71,7 @@ client.on('messageDelete', message => {
 
 client.on('guildMemberAdd', member => {
     client.channels.fetch(joinNotifChannelId).then(joinNotifChannel => {
-        joinNotifChannel.send("Yo, <@&771362128522772520>, "${member}" just joined!")
+        joinNotifChannel.send("Yo, <@&"771362128522772520">, "${member}" just joined!")
     });
 });
 
