@@ -35,7 +35,7 @@ client.on('ready', () => {
     
     let i = reaction.message.guild.roles.fetch()
                     .then(roles => {
-                        let pongRole = roles.cache.find(reaction => reaction. == pongRoleId);
+                        let pongRole = roles.cache.find(reaction => reaction.Id == pongRoleId);
                         console.log("found pong role");
                     }).catch(console.error);
 });
