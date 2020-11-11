@@ -38,12 +38,12 @@ client.on('ready', () => {
     
     client.guilds.fetch(ohpainkyGuildId).then(guild => {
         ohpainkyGuild = guild;
+        
+        guild.roles.fetch().then(roles => {
+            let pongRole = roles.cache.find(reaction => reaction.Id == pongRoleId);
+            console.log("found pong role");
+        }).catch(console.error);
     }).catch (error => console.error(error) );
-    
-    ohpainkyGuild.roles.fetch().then(roles => {
-        let pongRole = roles.cache.find(reaction => reaction.Id == pongRoleId);
-        console.log("found pong role");
-    }).catch(console.error);
 });
 
 client.on('message', message => {
