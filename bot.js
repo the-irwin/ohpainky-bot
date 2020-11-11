@@ -8,6 +8,8 @@ const botCommandsChannelId = '746580589020315738';
 const showcaseChannelId = '696773761239875615';
 const joinNotifChannelId = '696226678644408362';
 const pongRoleId = '771362128522772520';
+const ohpainkyGuildId = '692591742570201118';
+var ohpainkyGuild;
 var pongRole;
 var guild;
 var timeStamp;
@@ -34,11 +36,14 @@ client.on('ready', () => {
         }).catch (error => console.error(error) );
     }).catch (error => console.error(error) );
     
-    let i = reaction.message.guild.roles.fetch()
-                    .then(roles => {
-                        let pongRole = roles.cache.find(reaction => reaction.Id == pongRoleId);
-                        console.log("found pong role");
-                    }).catch(console.error);
+    client.guilds.fetch(ohpainkyGuildId).then(guild => {
+        ohpainkyGuild = guild;
+    }).catch (error => console.error(error) );
+    
+    ohpainkyGuild.roles.fetch().then(roles => {
+        let pongRole = roles.cache.find(reaction => reaction.Id == pongRoleId);
+        console.log("found pong role");
+    }).catch(console.error);
 });
 
 client.on('message', message => {
