@@ -7,6 +7,7 @@ const botCommandsChannelId = '746580589020315738';
 const showcaseChannelId = '696773761239875615';
 const joinNotifChannelId = '696226678644408362';
 const pongRoleId = '771362128522772520';
+var pongRole;
 var guild;
 var timeStamp;
 var emojiname;
@@ -31,6 +32,12 @@ client.on('ready', () => {
             messages.forEach(message => importBotCommand(message, true));
         }).catch (error => console.error(error) );
     }).catch (error => console.error(error) );
+    
+    let i = reaction.message.guild.roles.fetch()
+                    .then(roles => {
+                        let pongRole = roles.cache.find(reaction => reaction. == pongRoleId);
+                        console.log("found pong role");
+                    }).catch(console.error);
 });
 
 client.on('message', message => {
@@ -72,7 +79,7 @@ client.on('messageDelete', message => {
 
 client.on('guildMemberAdd', member => {
     client.channels.fetch(joinNotifChannelId).then(joinNotifChannel => {
-        joinNotifChannel.send("Yo, ${pongRoleId}, ${member} just joined!");
+        joinNotifChannel.send("Yo, ${pongRole}, ${member} just joined!");
     });
 });
 
