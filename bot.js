@@ -1,3 +1,4 @@
+'use strict';
 const Discord = require('discord.js');
 const client = new Discord.Client({partials: ['MESSAGE', 'CHANNEL', 'REACTION'] });
 const sRoleChannelId = '741760525045727243';
@@ -79,7 +80,7 @@ client.on('messageDelete', message => {
 
 client.on('guildMemberAdd', member => {
     client.channels.fetch(joinNotifChannelId).then(joinNotifChannel => {
-        joinNotifChannel.send("Yo, ${pongRole}, ${member} just joined!");
+        joinNotifChannel.send(`Yo, ${pongRole}, ${member} just joined!`);
     });
 });
 
