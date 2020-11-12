@@ -37,11 +37,12 @@ client.on('ready', () => {
     }).catch (error => console.error(error) );
     
     client.guilds.fetch(ohpainkyGuildId).then(guild => {
+        console.log("ohpainkyGuildId: " + guild.Id);
         ohpainkyGuild = guild;
         
         guild.roles.fetch().then(roles => {
-            let pongRole = roles.cache.find(reaction => reaction.Id == pongRoleId);
-            console.log("found pong role");
+            let pongRole = roles.cache.find(role => role.Id == pongRoleId);
+            console.log("found pong role: " + pongRole.Id);
         }).catch(console.error);
     }).catch (error => console.error(error) );
 });
