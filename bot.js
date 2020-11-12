@@ -40,10 +40,7 @@ client.on('ready', () => {
         console.log("ohpainkyGuildId: " + guild.Id);
         ohpainkyGuild = guild;
         
-        guild.roles.fetch().then(roles => {
-            let pongRole = roles.cache.find(role => role.Id == pongRoleId);
-            console.log("found pong role: " + pongRole.Id);
-        }).catch(console.error);
+        let pongRole = guild.role.cache.get(pongRoleId).catch(console.error);
     }).catch (error => console.error(error) );
 });
 
