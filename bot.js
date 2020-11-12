@@ -35,7 +35,7 @@ client.on('ready', () => {
             messages.forEach(message => importBotCommand(message, true));
         }).catch (error => console.error(error) );
         
-        ohpainkyGuild = botCommandsChannel.guild;
+        let ohpainkyGuild = client.guilds.cache.get(ohpainkyGuildId);;
         
         console.log("ohpainkyGuildId: " + ohpainkyGuild.Id);
         
