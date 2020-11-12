@@ -34,13 +34,13 @@ client.on('ready', () => {
             //Iterate through the messages here with the variable "messages".
             messages.forEach(message => importBotCommand(message, true));
         }).catch (error => console.error(error) );
-    }).catch (error => console.error(error) );
-    
-    client.guilds.fetch(ohpainkyGuildId).then(guild => {
-        console.log("ohpainkyGuildId: " + guild.Id);
-        ohpainkyGuild = guild;
         
-        let pongRole = guild.role.cache.get(pongRoleId).catch(console.error);
+        ohpainkyGuild = botCommandsChannel.guild;
+        
+        console.log("ohpainkyGuildId: " + ohpainkyGuild.Id);
+        
+        let pongRole = ohpainkyGuild.role.cache.get(pongRoleId).catch(console.error);
+        
     }).catch (error => console.error(error) );
 });
 
