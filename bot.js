@@ -38,7 +38,7 @@ client.on('ready', () => {
     
     client.guilds.fetch(ohpainkyGuildId).then(guild => {
         //ohpainkyGuild = guild;
-        console.log("ohpainkyGuildId: " + guild.Id);
+        console.log("ohpainkyGuildId: " + guild.id);
         let pongRole = guild.role.cache.get(pongRoleId).catch(console.error);
     }).catch(console.error);
 });
