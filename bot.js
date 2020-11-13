@@ -40,6 +40,7 @@ client.on('ready', () => {
         //ohpainkyGuild = guild;
         console.log("ohpainkyGuildId: " + guild.id);
         let pongRole = guild.roles.fetch(pongRoleId).catch(console.error);
+        console.log("pong role id: " + pongRole.id);
     }).catch(console.error);
 });
 
