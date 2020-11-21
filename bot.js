@@ -17,6 +17,7 @@ var timeStamp;
 var emojiname;
 var eChannel;
 var rolename;
+var generalChannel;
 var botCommands = new Map();
 
 client.on('ready', () => {
@@ -34,6 +35,14 @@ client.on('ready', () => {
             console.log(`Received ${messages.size} messages`);
             //Iterate through the messages here with the variable "messages".
             messages.forEach(message => importBotCommand(message, true));
+        }).catch (error => console.error(error) );
+    }).catch (error => console.error(error) );
+    
+    client.channels.fetch(generalChannelId).then(channel => {    //import bot commands from bot commands channel
+        channel.messages.fetch().then(messages => {
+            //console.log(`Received ${messages.size} messages`);
+            //Iterate through the messages here with the variable "messages".
+            generalChannel = channel;
         }).catch (error => console.error(error) );
     }).catch (error => console.error(error) );
     
@@ -86,7 +95,7 @@ client.on('messageDelete', message => {
 
 client.on('guildMemberAdd', member => {
     client.channels.fetch(joinNotifChannelId).then(joinNotifChannel => {
-        joinNotifChannel.send(`Yo, ${pongRole}, ${member} just joined! Go to ${client.channels.fetch(generalChannelId)} and welcome them!`);
+        joinNotifChannel.send(`Yo, ${pongRole}, ${member} just joined! Go to ${generalChannel} and welcome them!`);
     });
 });
 
