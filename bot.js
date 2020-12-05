@@ -19,6 +19,7 @@ var eChannel;
 var rolename;
 var generalChannel;
 var botCommands = new Map();
+var spamCount = 0;
 
 client.on('ready', () => {
     console.log('I am ready!');
@@ -57,7 +58,10 @@ client.on('ready', () => {
 });
 
 client.on('message', message => {
-    if (message.sender === '784478128226566155') { message.reply('Isnt your name supposed to be Dinosaur Cincinnati Ohio?') };
+    if (message.sender === '784478128226566155' && spamCount < 20) {
+        message.reply('Isnt your name supposed to be Dinosaur Cincinnati Ohio?');
+        spamCount++;
+    }
     var messageString = message.content.toLowerCase();
     if(messageString.charAt(0) == '=' && message.channel.Id != botCommandsChannelId) {    //check if the string is a bot command and is not in the bot commands channel (would cause infinite loop)
         try {
