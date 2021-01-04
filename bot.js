@@ -58,6 +58,7 @@ client.on('ready', () => {
 
 client.on('message', message => {
     var messageString = message.content.toLowerCase();
+    console.log("message found in channel: " + message.channel.Id);
     if(messageString.charAt(0) == '=' && message.channel.Id != botCommandsChannelId) {    //check if the string is a bot command and is not in the bot commands channel (would cause infinite loop)
         try {
             message.channel.send(botCommands.get(messageString.substring(1))[0]);
@@ -69,21 +70,7 @@ client.on('message', message => {
     if (messageString === 'ping') {
     	message.reply('pong');
   	}
-
-    messageString = messageString.replace(/<\/?[^>]+>/g, '') //ignores all mentions
-
-    if (messageString.includes('69') && !messageString.includes('www.' || 'http' || '.com' || '.net') && !message.author.bot) { // Disregard messages that contain links or are sent by bots
-        message.reply('nice');
-    }
-    if(!message.author.bot && (messageString.includes('michigan')) ) {
-        message.reply('Boo Michigan!');
-    }
-    if(message.channel.Id == showcaseChannelId && message.attachments.size > 0)  {    //react with pog on every image posted in the showcase channel
-        message.react(client.emojis.get('705130675627491540'));
-    }
-    if(message.channel.Id == botCommandsChannelId) {    //import new bot command
-        importBotCommand(message, false);
-    }
+    
     if(message.channel.Id == inputChannelId) {
         console.log("found message in input channel");
         if (str.indexOf(' ') == -1) {
@@ -102,6 +89,21 @@ client.on('message', message => {
                 console.error(error);
             }
         }
+    }
+
+    messageString = messageString.replace(/<\/?[^>]+>/g, '') //ignores all mentions
+
+    if (messageString.includes('69') && !messageString.includes('www.' || 'http' || '.com' || '.net') && !message.author.bot) { // Disregard messages that contain links or are sent by bots
+        message.reply('nice');
+    }
+    if(!message.author.bot && (messageString.includes('michigan')) ) {
+        message.reply('Boo Michigan!');
+    }
+    if(message.channel.Id == showcaseChannelId && message.attachments.size > 0)  {    //react with pog on every image posted in the showcase channel
+        message.react(client.emojis.get('705130675627491540'));
+    }
+    if(message.channel.Id == botCommandsChannelId) {    //import new bot command
+        importBotCommand(message, false);
     }
 });
 
