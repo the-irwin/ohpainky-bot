@@ -85,6 +85,7 @@ client.on('message', message => {
         importBotCommand(message, false);
     }
     if(message.channel.Id == inputChannelId) {
+        console.log("found message in input channel");
         if (str.indexOf(' ') == -1) {
             console.log('input doesnt have a whitespace');
         } else {
