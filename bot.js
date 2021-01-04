@@ -1,13 +1,13 @@
 'use strict';
 const Discord = require('discord.js');
 const client = new Discord.Client({partials: ['MESSAGE', 'CHANNEL', 'REACTION', 'GUILD'] });
-const sRoleChannelId = '741760525045727243';
-const roleChannelId = '707375163171143701';
+const roleChannelId = '741760525045727243';
 const botChannelId = '741678960383099000';
 const botCommandsChannelId = '746580589020315738';
 const generalChannelId = '692591742570201124';
 const showcaseChannelId = '696773761239875615';
 const joinNotifChannelId = '696226678644408362';
+const inputChannelId = '795782951790313524';
 const pongRoleId = '771362128522772520';
 const ohpainkyGuildId = '692591742570201118';
 var ohpainkyGuild;
@@ -24,8 +24,8 @@ client.on('ready', () => {
     console.log('I am ready!');
     timeStamp = Date.now()/1000;
     
-    emojiname = ["ohioflag", "pennsylvaniaflag", "indianaflag", "kentuckyflag", "questionmark", "grassblock", "ohiopurple", "ohioblue", "ohiored", "ohioorange"];
-    eChannel = [sRoleChannelId, sRoleChannelId, sRoleChannelId, sRoleChannelId, sRoleChannelId, roleChannelId, roleChannelId, roleChannelId, roleChannelId, roleChannelId];
+    emojiname = ["ohioflag", "pennsylvaniaflag", "indianaflag", "kentuckyflag", "questionmark", "grassblock", "twitch", "instagram", "youtube", "ohioorange"];
+    eChannel = [roleChannelId, roleChannelId, roleChannelId, roleChannelId, roleChannelId, roleChannelId, roleChannelId, roleChannelId, roleChannelId, roleChannelId];
     rolename = ["Ohio", "Pennsylvania", "Indiana", "Kentucky", "Not in OHPAINKY", "build events", "Twitch", "Instagram", "Youtube", "events"];
     
     //sendMessage(); // send the message once
@@ -83,6 +83,24 @@ client.on('message', message => {
     }
     if(message.channel.Id == botCommandsChannelId) {    //import new bot command
         importBotCommand(message, false);
+    }
+    if(message.channel.Id == inputChannelId) {
+        if (str.indexOf(' ') == -1) {
+            console.log('input doesnt have a whitespace');
+        } else {
+            var channelId = str.substr(0,str.indexOf(' '));  //split by first space
+            var channel;
+            client.channels.fetch(channelId).then(c => {    //import bot commands from bot commands channel
+                channel = c;
+            }).catch (error => console.error(error) );
+            
+            var content = str.substr(str.indexOf(' ')+1);
+            try {
+                sendMessage(channel, content);
+            } catch (error) {
+                console.error(error);
+            }
+        }
     }
 });
 
@@ -170,6 +188,11 @@ function sendMessage(){ //Used for sending a predefined message
     //roleChannel.send("Not in OHPAINKY");
     //roleChannel.send(" ");
     //roleChannel.send(" ");
+}
+
+function sendMessage(channel, content){
+    channel.send(content);
+    console.log("Sent \"" + content + "\" in channel: " + channel.id); 
 }
 
 client.on("messageReactionAdd", async (reaction, user) => {    //add reaction roles
