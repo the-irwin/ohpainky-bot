@@ -58,7 +58,7 @@ client.on('ready', () => {
 
 client.on('message', message => {
     var messageString = message.content.toLowerCase();
-    console.log("message found in channel: " + message.channel.Id);
+    //console.log("message found in channel: " + message.channel.Id);
     if(messageString.charAt(0) == '=' && message.channel.Id != botCommandsChannelId) {    //check if the string is a bot command and is not in the bot commands channel (would cause infinite loop)
         try {
             message.channel.send(botCommands.get(messageString.substring(1))[0]);
