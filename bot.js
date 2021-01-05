@@ -28,6 +28,10 @@ client.on('ready', () => {
     eChannel = [roleChannelId, roleChannelId, roleChannelId, roleChannelId, roleChannelId, roleChannelId, roleChannelId, roleChannelId, roleChannelId, roleChannelId];
     rolename = ["Ohio", "Pennsylvania", "Indiana", "Kentucky", "Not in OHPAINKY", "build events", "Twitch", "Instagram", "Youtube", "events"];
     
+    client.channels.fetch(roleChannelId).then(channel => {    //import bot commands from bot commands channel
+        roleChannel = channel;
+    }).catch (error => console.error(error) );
+    
     sendMessage(); // send the message once
     
     client.channels.fetch(botCommandsChannelId).then(botCommandsChannel => {    //import bot commands from bot commands channel
@@ -36,10 +40,6 @@ client.on('ready', () => {
             //Iterate through the messages here with the variable "messages".
             messages.forEach(message => importBotCommand(message, true));
         }).catch (error => console.error(error) );
-    }).catch (error => console.error(error) );
-    
-    client.channels.fetch(roleChannelId).then(channel => {    //import bot commands from bot commands channel
-        roleChannel = channel;
     }).catch (error => console.error(error) );
     
     client.channels.fetch(generalChannelId).then(channel => {    //import bot commands from bot commands channel
