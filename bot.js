@@ -38,6 +38,10 @@ client.on('ready', () => {
         }).catch (error => console.error(error) );
     }).catch (error => console.error(error) );
     
+    client.channels.fetch(roleChannelId).then(channel => {    //import bot commands from bot commands channel
+        roleChannel = channel;
+    }).catch (error => console.error(error) );
+    
     client.channels.fetch(generalChannelId).then(channel => {    //import bot commands from bot commands channel
         channel.messages.fetch().then(messages => {
             //console.log(`Received ${messages.size} messages`);
