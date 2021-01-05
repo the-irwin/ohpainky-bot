@@ -190,11 +190,11 @@ function sendMessage(){ //Used for sending a predefined message
         //roleChannel.send("Twitch");
         //roleChannel.send("YouTube");
         
-        roleChannel.send("React below for event notifications");
-        console.log("sent");
-        roleChannel.send("-------------------------------------");
-        roleChannel.send("Build Events");
-        roleChannel.send("Other Events");
+        //roleChannel.send("React below for event notifications");
+        //console.log("sent");
+        //roleChannel.send("-------------------------------------");
+        //roleChannel.send("Build Events");
+        //roleChannel.send("Other Events");
     }).catch (error => console.error(error) );
 }
 
