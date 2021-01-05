@@ -24,7 +24,7 @@ client.on('ready', () => {
     console.log('I am ready!');
     timeStamp = Date.now()/1000;
     
-    emojiname = ["ohioflag", "pennsylvaniaflag", "indianaflag", "kentuckyflag", "questionmark", "grassblock", "twitch", "instagram", "youtube", "ohioorange"];
+    emojiname = ["ohioflag", "pennsylvaniaflag", "indianaflag", "kentuckyflag", "questionmark", "grassblock", "twitch", "instagram", "youtube", "e_"];
     eChannel = [roleChannelId, roleChannelId, roleChannelId, roleChannelId, roleChannelId, roleChannelId, roleChannelId, roleChannelId, roleChannelId, roleChannelId];
     rolename = ["Ohio", "Pennsylvania", "Indiana", "Kentucky", "Not in OHPAINKY", "build events", "Twitch", "Instagram", "Youtube", "events"];
     
@@ -183,18 +183,18 @@ function deleteBotCommand(message) {
 
 function sendMessage(){ //Used for sending a predefined message
     client.channels.fetch(roleChannelId).then(roleChannel => {    //import bot commands from bot commands channel
-        roleChannel.send("React below for social media notifications");
-        console.log("sent");
-        roleChannel.send("-------------------------------------");
-        roleChannel.send("Instagram");
-        roleChannel.send("Twitch");
-        roleChannel.send("YouTube");
-        
-        //roleChannel.send("React below for event notifications");
+        //roleChannel.send("React below for social media notifications");
         //console.log("sent");
         //roleChannel.send("-------------------------------------");
-        //roleChannel.send("Build Events");
-        //roleChannel.send("Other Events");
+        //roleChannel.send("Instagram");
+        //roleChannel.send("Twitch");
+        //roleChannel.send("YouTube");
+        
+        roleChannel.send("React below for event notifications");
+        console.log("sent");
+        roleChannel.send("-------------------------------------");
+        roleChannel.send("Build Events");
+        roleChannel.send("Other Events");
     }).catch (error => console.error(error) );
 }
 
