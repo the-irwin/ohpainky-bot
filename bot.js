@@ -28,10 +28,6 @@ client.on('ready', () => {
     eChannel = [roleChannelId, roleChannelId, roleChannelId, roleChannelId, roleChannelId, roleChannelId, roleChannelId, roleChannelId, roleChannelId, roleChannelId];
     rolename = ["Ohio", "Pennsylvania", "Indiana", "Kentucky", "Not in OHPAINKY", "build events", "Twitch", "Instagram", "Youtube", "events"];
     
-    client.channels.fetch(roleChannelId).then(channel => {    //import bot commands from bot commands channel
-        roleChannel = channel;
-    }).catch (error => console.error(error) );
-    
     sendMessage(); // send the message once
     
     client.channels.fetch(botCommandsChannelId).then(botCommandsChannel => {    //import bot commands from bot commands channel
@@ -186,18 +182,20 @@ function deleteBotCommand(message) {
 }
 
 function sendMessage(){ //Used for sending a predefined message
-    roleChannel.send("React below for social media notifications");
-    console.log("sent");
-    roleChannel.send("-------------------------------------");
-    roleChannel.send("Instagram");
-    roleChannel.send("Twitch");
-    roleChannel.send("YouTube");
-    
-    //roleChannel.send("React below for event notifications");
-    //console.log("sent");
-    //roleChannel.send("-------------------------------------");
-    //roleChannel.send("Build Events");
-    //roleChannel.send("Other Events");
+    client.channels.fetch(roleChannelId).then(roleChannel => {    //import bot commands from bot commands channel
+        roleChannel.send("React below for social media notifications");
+        console.log("sent");
+        roleChannel.send("-------------------------------------");
+        roleChannel.send("Instagram");
+        roleChannel.send("Twitch");
+        roleChannel.send("YouTube");
+        
+        //roleChannel.send("React below for event notifications");
+        //console.log("sent");
+        //roleChannel.send("-------------------------------------");
+        //roleChannel.send("Build Events");
+        //roleChannel.send("Other Events");
+    }).catch (error => console.error(error) );
 }
 
 
