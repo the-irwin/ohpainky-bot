@@ -28,7 +28,7 @@ client.on('ready', () => {
     eChannel = [roleChannelId, roleChannelId, roleChannelId, roleChannelId, roleChannelId, roleChannelId, roleChannelId, roleChannelId, roleChannelId, roleChannelId];
     rolename = ["Ohio", "Pennsylvania", "Indiana", "Kentucky", "Not in OHPAINKY", "build events", "Twitch", "Instagram", "Youtube", "events"];
     
-    //sendMessage(); // send the message once
+    sendMessage(); // send the message once
     
     client.channels.fetch(botCommandsChannelId).then(botCommandsChannel => {    //import bot commands from bot commands channel
         botCommandsChannel.messages.fetch().then(messages => {
@@ -181,16 +181,18 @@ function deleteBotCommand(message) {
 }
 
 function sendMessage(){ //Used for sending a predefined message
-    //roleChannel.send("React with <:grassblock:743579727809478706> to get build event announcements");
+    roleChannel.send("React below for social media notifications");
+    console.log("sent");
+    roleChannel.send("-------------------------------------");
+    roleChannel.send("Instagram");
+    roleChannel.send("Twitch");
+    roleChannel.send("YouTube");
+    
+    //roleChannel.send("React below for event notifications");
     //console.log("sent");
     //roleChannel.send("-------------------------------------");
-    //roleChannel.send("Ohio");
-    //roleChannel.send("Pennsylvania");
-    //roleChannel.send("Indiana");
-    //roleChannel.send("Kentucky");
-    //roleChannel.send("Not in OHPAINKY");
-    //roleChannel.send(" ");
-    //roleChannel.send(" ");
+    //roleChannel.send("Build Events");
+    //roleChannel.send("Other Events");
 }
 
 function sendMessage(channel, content){
