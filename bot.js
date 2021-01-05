@@ -24,7 +24,7 @@ client.on('ready', () => {
     console.log('I am ready!');
     timeStamp = Date.now()/1000;
     
-    emojiname = ["ohioflag", "pennsylvaniaflag", "indianaflag", "kentuckyflag", "questionmark", "grassblock", "twitch", "instagram", "youtube", "e_"];
+    emojiname = ["ohioflag", "pennsylvaniaflag", "indianaflag", "kentuckyflag", "questionmark", "grassblock", "twitch", "instagram", "youtube", "E_"];
     eChannel = [roleChannelId, roleChannelId, roleChannelId, roleChannelId, roleChannelId, roleChannelId, roleChannelId, roleChannelId, roleChannelId, roleChannelId];
     rolename = ["Ohio", "Pennsylvania", "Indiana", "Kentucky", "Not in OHPAINKY", "build events", "Twitch", "Instagram", "Youtube", "events"];
     
