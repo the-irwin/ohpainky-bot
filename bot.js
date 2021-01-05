@@ -84,7 +84,8 @@ client.on('message', message => {
             
             var content = str.substr(str.indexOf(' ')+1);
             try {
-                sendMessage(channel, content);
+                channel.send(content);
+                console.log("Sent \"" + content + "\" in channel: " + channel.id); 
             } catch (error) {
                 console.error(error);
             }
@@ -195,10 +196,6 @@ function sendMessage(){ //Used for sending a predefined message
     //roleChannel.send("Other Events");
 }
 
-function sendMessage(channel, content){
-    channel.send(content);
-    console.log("Sent \"" + content + "\" in channel: " + channel.id); 
-}
 
 client.on("messageReactionAdd", async (reaction, user) => {    //add reaction roles
     if (reaction.message.partial) await reaction.message.fetch();
