@@ -58,8 +58,8 @@ client.on('ready', () => {
 
 client.on('message', message => {
     var messageString = message.content.toLowerCase();
-    //console.log("message found in channel: " + message.channel.Id);
-    if(messageString.charAt(0) == '=' && message.channel.Id != botCommandsChannelId) {    //check if the string is a bot command and is not in the bot commands channel (would cause infinite loop)
+    //console.log("message found in channel: " + message.channel.id);
+    if(messageString.charAt(0) == '=' && message.channel.id != botCommandsChannelId) {    //check if the string is a bot command and is not in the bot commands channel (would cause infinite loop)
         try {
             message.channel.send(botCommands.get(messageString.substring(1))[0]);
         } catch (error) {
@@ -71,8 +71,8 @@ client.on('message', message => {
     	message.reply('pong');
   	}
     
-    console.log("Found message in " + message.channel.Id);
-    if(message.channel.Id == botCommandsChannelId) {
+    //console.log("Found message in " + message.channel.id);
+    if(message.channel.id == botCommandsChannelId) {
         console.log("found message in input channel");
         if (str.indexOf(' ') == -1) {
             console.log('input doesnt have a whitespace');
@@ -101,17 +101,17 @@ client.on('message', message => {
     if(!message.author.bot && (messageString.includes('michigan')) ) {
         message.reply('Boo Michigan!');
     }
-    if(message.channel.Id == showcaseChannelId && message.attachments.size > 0)  {    //react with pog on every image posted in the showcase channel
+    if(message.channel.id == showcaseChannelId && message.attachments.size > 0)  {    //react with pog on every image posted in the showcase channel
         message.react(client.emojis.get('705130675627491540'));
     }
-    if(message.channel.Id == botCommandsChannelId) {    //import new bot command
+    if(message.channel.id == botCommandsChannelId) {    //import new bot command
         importBotCommand(message, false);
     }
 });
 
 client.on('messageDelete', message => {
     
-    if(message.channel.Id == botCommandsChannelId) {
+    if(message.channel.id == botCommandsChannelId) {
         deleteBotCommand(message);
     }
 });
@@ -124,7 +124,7 @@ client.on('guildMemberAdd', member => {
 
 client.on('messageUpdate', (oldMessage, newMessage) => {
     
-    if(newMessage.channel.Id == botCommandsChannelId) {
+    if(newMessage.channel.id == botCommandsChannelId) {
         deleteBotCommand(oldMessage);
         importBotCommand(newMessage, false);
     }
