@@ -72,18 +72,18 @@ client.on('message', message => {
   	}
     
     //console.log("Found message in " + message.channel.id);
-    if(message.channel.id == botCommandsChannelId) {
+    if(message.channel.id == inputChannelId) {
         console.log("found message in input channel");
-        if (str.indexOf(' ') == -1) {
+        if (messageString.indexOf(' ') == -1) {
             console.log('input doesnt have a whitespace');
         } else {
-            var channelId = str.substr(0,str.indexOf(' '));  //split by first space
+            var channelId = messageString.substr(0,messageString.indexOf(' '));  //split by first space
             var channel;
             client.channels.fetch(channelId).then(c => {    //import bot commands from bot commands channel
                 channel = c;
             }).catch (error => console.error(error) );
             
-            var content = str.substr(str.indexOf(' ')+1);
+            var content = messageString.substr(messageString.indexOf(' ')+1);
             try {
                 channel.send(content);
                 console.log("Sent \"" + content + "\" in channel: " + channel.id); 
