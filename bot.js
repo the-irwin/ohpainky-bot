@@ -71,7 +71,7 @@ client.on('message', message => {
     	message.reply('pong');
   	}
     
-    if(message.channel.Id == inputChannelId) {
+    if(message.channel.Id == botCommandsChannelId) {
         console.log("found message in input channel");
         if (str.indexOf(' ') == -1) {
             console.log('input doesnt have a whitespace');
