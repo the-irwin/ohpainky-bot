@@ -71,6 +71,7 @@ client.on('message', message => {
     	message.reply('pong');
   	}
     
+    console.log("Found message in " + message.channel.Id);
     if(message.channel.Id == botCommandsChannelId) {
         console.log("found message in input channel");
         if (str.indexOf(' ') == -1) {
